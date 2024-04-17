@@ -35,6 +35,10 @@ def harmonic(x1):
 def product_reichenbach(x1, x2): #ADDED
     return 1 - x1 + x1 * x2
 
+def lukas(x1, x2): # ADDED
+    return np.minimum(1 - x1 + x2, 1)
+
+
 # Annotate unprotected ops
 unprotected_ops = [
     # Binary operators
@@ -65,7 +69,8 @@ unprotected_ops = [
     Token(n4, "n4", arity=1, complexity=3),
     Token(sigmoid, "sigmoid", arity=1, complexity=4),
     Token(harmonic, "harmonic", arity=1, complexity=4),
-    Token(product_reichenbach, "product_reichenbach", arity=2, complexity=1) #ADDED, complexity can be tweaked
+    Token(product_reichenbach, "product_reichenbach", arity=2, complexity=1), #ADDED, complexity can be tweaked
+    Token(lukas, "lukas", arity=2, complexity=1) #ADDED, complexity can be tweaked
 ]
 
 
@@ -112,7 +117,20 @@ def protected_sigmoid(x1):
     return 1 / (1 + protected_expneg(x1))
 
 def protected_product_reichenbach(x1, x2): #ADDED
-    return 1 - x1 + x1 * x2
+    with np.errstate(divide='ignore', invalid='ignore', over='ignore'):
+        result = 1 - x1 + x1 * x2
+        # Handle potential errors caused by overflow or invalid values
+        result[np.isnan(result)] = 1.0  # Replace NaN values with 1.0
+        result[np.isinf(result)] = 1.0  # Replace infinity values with 1.0
+        return result
+
+def protected_lukas(x1, x2):
+    with np.errstate(divide='ignore', invalid='ignore', over='ignore'):
+        result = np.minimum(1 - x1 + x2, 1)
+        # Handle potential errors caused by overflow or invalid values
+        result[np.isnan(result)] = 1.0  # Replace NaN values with 1.0
+        result[np.isinf(result)] = 1.0  # Replace infinity values with 1.0
+        return result
 
 # Annotate protected ops
 protected_ops = [
@@ -130,7 +148,8 @@ protected_ops = [
     Token(protected_n3, "n3", arity=1, complexity=3),
     Token(protected_n4, "n4", arity=1, complexity=3),
     Token(protected_sigmoid, "sigmoid", arity=1, complexity=4),
-    Token(protected_product_reichenbach, "product_reichenbach", arity=2, complexity=1) #ADDED, complexity can be tweaked
+    Token(protected_product_reichenbach, "product_reichenbach", arity=2, complexity=1), #ADDED, complexity can be tweaked
+    Token(protected_lukas, "protected_lukas", arity=2, complexity=1) #ADDED, complexity can be tweaked
 ]
 
 # Add unprotected ops to function map

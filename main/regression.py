@@ -1,15 +1,12 @@
-import sys, os
-sys.path.insert(1, os.path.abspath(os.path.join('..', 'deep-symbolic-optimization-master')))
-
 import numpy as np
 import pandas as pd
 
 from dso.task import HierarchicalTask
-from dso.library import Library
+from dso.library import Library, Polynomial
 from dso.functions import create_tokens
 from dso.task.regression.dataset import BenchmarkDataset
+from dso.task.regression.polyfit import PolyOptimizer, make_poly_data
 from sklearn.metrics import log_loss, f1_score
-
 
 class RegressionTask(HierarchicalTask):
     """
@@ -24,7 +21,9 @@ class RegressionTask(HierarchicalTask):
                  extra_metric_test_params=(), reward_noise=0.0,
                  reward_noise_type="r", threshold=1e-12,
                  normalize_variance=False, protected=False,
-                 decision_tree_threshold_set=None, classification=False, sigmoid_threshold=0.5):
+                 decision_tree_threshold_set=None,
+                 poly_optimizer_params=None,
+                 classification=False, sigmoid_threshold=0.5):
         """
         Parameters
         ----------
@@ -69,6 +68,9 @@ class RegressionTask(HierarchicalTask):
 
         decision_tree_threshold_set : list
             A set of constants {tj} for constructing nodes (xi < tj) in decision trees.
+
+        poly_optimizer_params : dict
+            Parameters for PolyOptimizer if poly token is in the library.
         """
 
         super(HierarchicalTask).__init__()
@@ -78,9 +80,10 @@ class RegressionTask(HierarchicalTask):
         (1) named benchmark, (2) benchmark config, (3) filename, and (4) direct
         (X, y) data.
         """
-
+        self.protected = protected #DIFF
         self.classification = classification #DIFF
         self.sigmoid_threshold = sigmoid_threshold #DIFF
+        print('protected = ', self.protected)
         print('classification = ', self.classification) #DIFF
         print('sigmoid_threshold = ', self.sigmoid_threshold) #DIFF
 
@@ -172,21 +175,38 @@ class RegressionTask(HierarchicalTask):
 
         # Set stochastic flag
         self.stochastic = reward_noise > 0.0
-        
-        # DIFF
-        # Polynomial tokens are included in the DSO regression task
 
-    def reward_function(self, p):
-        
-        #DIFF
-        # Polynomial tokens are included in the DSO regression library
+        # Set neg_nrmse as the metric for const optimization
+        self.const_opt_metric, _, _ = make_regression_metric("neg_nrmse", self.y_train)
+
+        # Function to optimize polynomial tokens
+        if "poly" in self.library.names:
+            if poly_optimizer_params is None:
+                poly_optimizer_params = {
+                        "degree": 3,
+                        "coef_tol": 1e-6,
+                        "regressor": "dso_least_squares",
+                        "regressor_params": {}
+                    }
+
+            self.poly_optimizer = PolyOptimizer(**poly_optimizer_params)
+
+    def reward_function(self, p, optimizing=False):
+        # fit a polynomial if p contains a 'poly' token
+        if p.poly_pos is not None:
+            assert len(p.const_pos) == 0, "A program cannot contain 'poly' and 'const' tokens at the same time"
+            poly_data_y = make_poly_data(p.traversal, self.X_train, self.y_train)
+            if poly_data_y is None:  # invalid function evaluations (nan or inf) appeared in make_poly_data
+                p.traversal[p.poly_pos] = Polynomial([(0,)*self.X_train.shape[1]], np.ones(1))
+            else:
+                p.traversal[p.poly_pos] = self.poly_optimizer.fit(self.X_train, poly_data_y)
 
         # Compute estimated values
         y_hat = p.execute(self.X_train)
 
         # For invalid expressions, return invalid_reward
         if p.invalid:
-            return self.invalid_reward
+            return -1.0 if optimizing else self.invalid_reward
 
         # Observation noise
         # For reward_noise_type == "y_hat", success must always be checked to
@@ -197,15 +217,14 @@ class RegressionTask(HierarchicalTask):
                 return self.max_reward
             y_hat += self.rng.normal(loc=0, scale=self.scale, size=y_hat.shape)
 
-        #DIFF
+        # Compute and return neg_nrmse for constant optimization
+        if optimizing:
+            return self.const_opt_metric(self.y_train, y_hat)
 
         # convert to binary if classification is True
         if self.classification is True:
             y_hat = 1 / (1 + np.exp(-y_hat))
             y_hat = (y_hat > self.sigmoid_threshold).astype(int)
-
-        #DIFF
-        # Neg RMSE computation if we use constant optimization
 
         # Compute metric
         r = self.metric(self.y_train, y_hat)
@@ -228,13 +247,9 @@ class RegressionTask(HierarchicalTask):
         # Compute predictions on test data
         y_hat = p.execute(self.X_test)
 
-        #DIFF
-        1
-        # convert to binary if classification is True
         if self.classification is True:
             y_hat = 1 / (1 + np.exp(-y_hat))
             y_hat = (y_hat > self.sigmoid_threshold).astype(int)
-
 
         if p.invalid:
             nmse_test = None
@@ -367,20 +382,11 @@ def make_regression_metric(name, y_train, *args):
         # Range: [0, 1]
         "spearman" :    (lambda y, y_hat : scipy.stats.spearmanr(y, y_hat)[0],
                         0),
-
-        #DIFF
-        # Inverse cross entropy loss
-        # Range: [0, 1] 
-        # y_hat (predictions) are passed through a sigmoid
-        "inv_crossentropy" :     (lambda y, y_hat : 1 / (1 + log_loss(y, y_hat)),
-                        1),
-
-        #DIFF
+        
         # F1-score
         # Range: [0, 1]
         "f1_score" :     (lambda y, y_hat : f1_score(y, y_hat),
                         1)
-
     }
 
     assert name in all_metrics, "Unrecognized reward function name."
@@ -402,8 +408,7 @@ def make_regression_metric(name, y_train, *args):
         "fraction" : 0.0,
         "pearson" : 0.0,
         "spearman" : 0.0,
-        "inv_crossentropy": 0.0,    #DIFF
-        "f1_score": 0.0             #DIFF
+        "f1_score": 0.0
     }
     invalid_reward = all_invalid_rewards[name]
 
@@ -419,8 +424,7 @@ def make_regression_metric(name, y_train, *args):
         "fraction" : 1.0,
         "pearson" : 1.0,
         "spearman" : 1.0,
-        "inv_crossentropy": 1.0,    #DIFF
-        "f1_score": 1.0             #DIFF
+        "f1_score": 0.0
     }
     max_reward = all_max_rewards[name]
 
