@@ -38,7 +38,6 @@ def product_reichenbach(x1, x2): #ADDED
 def lukas(x1, x2): # ADDED
     return np.minimum(1 - x1 + x2, 1)
 
-
 # Annotate unprotected ops
 unprotected_ops = [
     # Binary operators

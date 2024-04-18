@@ -21,7 +21,7 @@
       // increase runtime.
 
       // TODO: Tweakable
-      "function_set": ["product_reichenbach", "add", "sub", "div", "mul", "const", "sin", "cos", "exp", "sqrt", "n2", "log"],
+      "function_set": ["product_reichenbach", "add", "sub", "div", "mul", "const"],
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
@@ -30,8 +30,8 @@
       "metric_params" : [1.0],
 
       // Optional alternate metric to be used at evaluation time.
-      "extra_metric_test" : null,
-      "extra_metric_test_params" : [],
+      "extra_metric_test" : "f1_score",
+      "extra_metric_test_params" : [1.0],
 
       // NRMSE threshold for early stopping. This is useful for noiseless
       // benchmark problems when DSO discovers the true solution.
@@ -129,14 +129,14 @@
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
          "targets" : ["product_reichenbach"],
-         "effectors" : ["product_reichenbach"],
+         "effectors" : ["product_reichenbach", "add", "sub", "div", "mul"],
          "relationship" : "child",
          "on" : true
       },
       "repeat" : {
-         "tokens" : "const",
+         "tokens" : "product_reichenbach",
          "min_" : null,
-         "max_" : 10,
+         "max_" : 1,
          "on" : true
       },
       "inverse" : {
