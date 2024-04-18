@@ -54,7 +54,7 @@ def _finish_tokens(tokens):
     return tokens
 
 
-def from_str_tokens(str_tokens, skip_cache=False):
+def from_str_tokens(str_tokens, skip_cache=True):
     """
     Memoized function to generate a Program from a list of str and/or float.
     See from_tokens() for details.
@@ -105,7 +105,7 @@ def from_str_tokens(str_tokens, skip_cache=False):
     return p
 
 
-def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True):
+def from_tokens(tokens, skip_cache=True, on_policy=True, finish_tokens=True):
 
     """
     Memoized function to generate a Program from a list of tokens.

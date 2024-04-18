@@ -135,7 +135,7 @@
       },
       "repeat" : {
          "tokens" : "product_reichenbach",
-         "min_" : null,
+         "min_" : 1,
          "max_" : 1,
          "on" : true
       },

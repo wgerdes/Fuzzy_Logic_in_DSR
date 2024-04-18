@@ -7,6 +7,7 @@ Adding noise
 ISSUES:
 !!! USE REICHENBACH AS ROOT OPERATOR, WITH a TO LEFT SIDE AND b TO RIGHT SIDE
 !!! ATTEMPTS TO INCORPORATE THIS:
+Program.library.names.index('product_reichenbach')
 Min constraint in --> BUT! Product reichenbach not ALWAYS in the traversal      
 "relational" : {
          "targets" : ["product_reichenbach"],
@@ -74,6 +75,8 @@ cd ..
 cp main/functions.py deep-symbolic-optimization/dso/dso
 cp main/regression.py deep-symbolic-optimization/dso/dso/task/regression/
 cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
+cp main/prior.py deep-symbolic-optimization/dso/dso
+cp main/program.py deep-symbolic-optimization/dso/dso
 
 cd deep-symbolic-optimization/dso
 python -m dso.run dso/config/config_logic.json

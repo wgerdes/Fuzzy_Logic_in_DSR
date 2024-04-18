@@ -148,7 +148,7 @@ protected_ops = [
     Token(protected_n4, "n4", arity=1, complexity=3),
     Token(protected_sigmoid, "sigmoid", arity=1, complexity=4),
     Token(protected_product_reichenbach, "product_reichenbach", arity=2, complexity=1), #ADDED, complexity can be tweaked
-    Token(protected_lukas, "protected_lukas", arity=2, complexity=1) #ADDED, complexity can be tweaked
+    Token(protected_lukas, "protected_lukas", arity=2, complexity=-100) #ADDED, complexity can be tweaked
 ]
 
 # Add unprotected ops to function map
