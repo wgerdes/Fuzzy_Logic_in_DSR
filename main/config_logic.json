@@ -8,7 +8,7 @@
       
       // threshold of sigmoid
       // TODO tweakable
-      "sigmoid_threshold" : 0.7,
+      "sigmoid_threshold" : 0.5,
 
       // This can either be (1) the name of the benchmark dataset (see
       // benchmarks.csv for a list of supported benchmarks) or (2) a path to a
