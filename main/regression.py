@@ -80,10 +80,10 @@ class RegressionTask(HierarchicalTask):
         (1) named benchmark, (2) benchmark config, (3) filename, and (4) direct
         (X, y) data.
         """
-        self.protected = protected #DIFF
+        # self.protected = protected #DIFF
         self.classification = classification #DIFF
         self.sigmoid_threshold = sigmoid_threshold #DIFF
-        print('protected = ', self.protected)
+        # print('protected = ', self.protected)
         print('classification = ', self.classification) #DIFF
         print('sigmoid_threshold = ', self.sigmoid_threshold) #DIFF
 

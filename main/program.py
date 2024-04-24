@@ -105,7 +105,7 @@ def from_str_tokens(str_tokens, skip_cache=True):
     return p
 
 
-def from_tokens(tokens, skip_cache=True, on_policy=True, finish_tokens=True):
+def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = True):
 
     """
     Memoized function to generate a Program from a list of tokens.
@@ -146,8 +146,13 @@ def from_tokens(tokens, skip_cache=True, on_policy=True, finish_tokens=True):
     # For stochastic Tasks, there is no cache; always generate a new Program.
     # For deterministic Programs, if the Program is in the cache, return it;
     # otherwise, create a new one and add it to the cache.
+    if add_logic:
+        if 18 not in tokens:
+            tokens[0] = 18
+
     if skip_cache or Program.task.stochastic:
         p = Program(tokens, on_policy=on_policy)
+
     else:
         key = tokens.tostring()
         try:
@@ -159,7 +164,6 @@ def from_tokens(tokens, skip_cache=True, on_policy=True, finish_tokens=True):
         except KeyError:
             p = Program(tokens, on_policy=on_policy)
             Program.cache[key] = p
-
     return p
 
 

@@ -1,59 +1,90 @@
 Questions
 Computing possibilities / necessities
-Determining fuzzyness of classes --> just do smth
 Adding noise
+    
+!!! USE LOGIC_FORMULA AS ROOT OPERATOR, WITH a TO LEFT SIDE AND b TO RIGHT SIDE --DONE
+program.py --> lines 150 + 151 --> added token (18) to pos[0] in traversal --> which 
+LINE108: program.py - from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = True):
 
+LINE149 if add_logic:
+LINE150   if 18 not in tokens:
+LINE151     tokens[0] = 18
 
-ISSUES:
-!!! USE REICHENBACH AS ROOT OPERATOR, WITH a TO LEFT SIDE AND b TO RIGHT SIDE
-!!! ATTEMPTS TO INCORPORATE THIS:
-Program.library.names.index('product_reichenbach')
-Min constraint in --> BUT! Product reichenbach not ALWAYS in the traversal      
 "relational" : {
-         "targets" : ["product_reichenbach"],
-         "effectors" : ["product_reichenbach", "add", "sub", "div", "mul"],
+         "targets" : ["LOGIC_FORMULA"],
+         "effectors" : ["add", "sub", "div", "mul"], !!! ALL OTHER FUNCTIONS, DOES NOT HAVE TO INCLUDE LOGIC_FORMULA DUE TO MAX CONSTRAINT
          "relationship" : "child",
          "on" : true
       },
-      "repeat" : {
-         "tokens" : "product_reichenbach",
-         "min_" : 1,
-         "max_" : 1,
+      "repeat" : { 
+         "tokens" : "LOGIC_FORMULA",
+         "min_" : null,
+         "max_" : 1, 
          "on" : true
       },
 
-ADDED min TO prior.py
 
-OTHER ATTEMPTS:
-In program.py --> seems like there is some sort of version check to create errors when it is not correct
-- Adding directly to traversal creates ISSUES
-- Adding directly to tokens creates ISSUES
-
-!!!
+!!! ISSUES
 Lukas / Reichenbach both get:
   File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/reduction.py", line 51, in dumps
     cls(buf, protocol).dump(obj)
 _pickle.PicklingError: Can't pickle lukas: attribute lookup lukas on __main__ 
 
-Error originates from multiprocessing
+Error originates from multiprocessing, not when just using 1 core
 !!!
+
 
 Todo
 Data preparation
     Create working hours feature --DONE
-    Test out possible log transformable columns
+    Test out possible log transformable columns --DONE
     Why should we add noise? --Questions
-    Check weekly / 24h lag to see if we need to transform -- IRRELEVANT
-    python evaluate_expression.py --"sqrt(x2 + x3)*(-x5 + x7 + 18)" --0.7 --"train_df" 
+    Check weekly / 24h lag to see if we need to transform --IRRELEVANT
+    Fuzzyfying columns --DONE
+        Currently just based on percentile
+    Used columns:
+        log_amount', 'step', 'oldbalanceOrig', 'newbalanceOrig',
+       'oldbalanceDest', 'newbalanceDest', 'is_workday', 'meanDest3',
+       'meanDest7', 'maxDest3', 'maxDest7', 'type_CASH_IN', 'type_CASH_OUT',
+       'type_DEBIT', 'type_PAYMENT', 'type_TRANSFER', 'type2_CC', 'type2_CM',
+       'isFraud'
+    Fuzzified columns:
+        'log_amount', 'oldbalanceOrig', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'is_workday', 'meanDest3', 'meanDest7', 'maxDest3', 'maxDest7'
+
 
 DSR
     Incorporate Product (Reichenbach) and Lukasiewics into DSR framework (functions.py) -- DONE
     Added to functions.py as protected_product_reichenbach and product_reichenbach  -- DONE
     Both are set as UNARY operators with a complexity of 1 similar to multiplication -- DONE
     These new operators can now be chosen in the config file by incorporating them into the function set -- DONE
-    Reichenbach can not be a child because it should be the root node -- DONE
-    Reichenbach should always be included in the traversal / tokens -- TODO
-        - Created min constraint in config file -- Reichenbach can not be duplicate but sometimes is not in traversal
+    Reichenbach can not be a child because it should be the root node --DONE
+    Reichenbach should always be included in the traversal / tokens --DONE
+    Enable multiprocessing with logical formula --TODO
+
+Data evaluate_expression  
+    Create script to gather performance from formula and create understandable formula --TODO
+
+Tweakable parameters:
+    Sigmoid treshold (config)
+    Function set (config)
+    poly token (config)
+    training hyperparameters (config)
+    policy optimizer parameters (config)
+    prior parameters (config)
+
+    mean / max dest rolling window (data prep)
+    log transform (data prep)
+    train/val/test split (data prep)
+    under / oversampling (data prep)
+
+    neural-guided GP meld (config) see https://github.com/dso-org/deep-symbolic-optimization
+
+    policy optimizers
+        risk seeking
+        vanilla
+        priority queue
+        proximal policy
+    
 
 
 Setup:
@@ -69,14 +100,19 @@ pip install --upgrade setuptools pip
 export CFLAGS="-I $(python -c "import numpy; print(numpy.get_include())") $CFLAGS" # Needed on Mac to prevent fatal error: 'numpy/arrayobject.h' file not found
 pip install -e ./dso # Install DSO package and core dependencies
 
+
 Copy to DSO:
 cd ..
 cd ..
 cp main/functions.py deep-symbolic-optimization/dso/dso
+cp main/program.py deep-symbolic-optimization/dso/dso
 cp main/regression.py deep-symbolic-optimization/dso/dso/task/regression/
 cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
-cp main/prior.py deep-symbolic-optimization/dso/dso
-cp main/program.py deep-symbolic-optimization/dso/dso
 
 cd deep-symbolic-optimization/dso
+python -m dso.run dso/config/config_logic.json --runs=6 --n_cores_task=4
+
+
+
+
 python -m dso.run dso/config/config_logic.json

@@ -22,10 +22,11 @@
 
       // TODO: Tweakable
       "function_set": ["product_reichenbach", "add", "sub", "div", "mul", "const"],
+      
+   //"sin", "cos", "exp", "sqrt", "n2", "log"
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
-      // ALTER THIS WITH F1 SCORE
       "metric" : "f1_score",
       "metric_params" : [1.0],
 
@@ -79,25 +80,81 @@
          }
       }
    },
+   // Hyperparameters related to genetic programming hybrid methods.
+   "gp_meld" : {
+      "run_gp_meld" : false,
+      "verbose" : false,
+      // How many GP generations to run between each RNN step. 
+      "generations" : 20,
+      "p_crossover" : 0.5,
+      "p_mutate" : 0.5,
+      "tournament_size" : 5,
+      "train_n" : 50,
+      "mutate_tree_max" : 3
+   },
 
    // Only the key training hyperparameters are listed here. See
    // config_common.json for the full list.
    "training" : {
-      "n_samples" : 30000, // TODO tweakable
+      "n_samples" : 50000, // TODO tweakable
       "batch_size" : 500, // TODO tweakable
+
+      // To use the risk-seeking policy gradient, set epsilon < 1.0 and
+      // baseline="R_e"
       "epsilon" : 0.02, // TODO tweakable
+      "baseline" : "R_e",
+
+      // Control variate parameters for vanilla policy gradient. If risk-seeking
+      // is used, these have no effect.
+      "alpha" : 0.5,
+      "b_jumpstart" : false,
 
       // Recommended to set this to as many cores as you can use! Especially if
       // using the "const" token.
-      "n_cores_batch" : 4
+      "n_cores_batch" : 4,
+
+      // The complexity measure is only used to compute a Pareto front. It does
+      // not affect the optimization.
+      "complexity" : "token",
+
+      // The constant optimizer used to optimized each "const" token.
+      "const_optimizer" : "scipy",
+      "const_params" : {
+         "method" : "L-BFGS-B",
+         "options" : {
+            "gtol" : 1e-3
+         }
+      }
    },
 
-   // // Only the key Policy Optimizer hyperparameters are listed here. See
-   // // config_common.json for the full list.
+   // Hyperparameters related to the policy, i.e. parameterized distribution over objects.
+   "policy" : {
+   
+      // Type of policy
+      // "rnn" is equivalent to "dso.policy.rnn_policy:RNNPolicy"
+      "policy_type" : "rnn", 
+
+      // Maximum sequence length.
+      "max_length" : 64,
+      
+      // Policy parameters
+      "cell" : "lstm",
+      "num_layers" : 1,
+      "num_units" : 32,
+      "initializer" : "zeros"
+   },
+
+   // Hyperparameters related to the discrete distribution model over objects.
    "policy_optimizer" : {
+
+      // Optimizer hyperparameters.
       "learning_rate" : 0.0025, //TODO tweakable
+      "optimizer" : "adam",
+
+      // Entropy regularizer hyperparameters.
       "entropy_weight" : 0.03, //TODO tweakable
       "entropy_gamma" : 0.7, //TODO tweakable
+
 
       // EXPERIMENTAL: Proximal policy optimization hyperparameters.
       // "policy_optimizer_type" : "ppo",
@@ -105,13 +162,13 @@
       // "ppo_n_iters" : 10,
       // "ppo_n_mb" : 4,
 
-      // EXPERIMENTAL: Priority queue training hyperparameters. 
-      // TODO tweakable
+      // Type of policy optimizer
+      // "pg" is equivalent to "dso.policy_optimizer.pg_policy_optimizer:PGPolicyOptimizer"
       "policy_optimizer_type" : "pqt",
       "pqt_k" : 10,
       "pqt_batch_size" : 1,
       "pqt_weight" : 200.0,
-      "pqt_use_pg" : false
+      "pqt_use_pg" : true
 
    },
 
@@ -122,20 +179,20 @@
    "prior": {
       "length": {
          "min_": 4,
-         "max_": 256,
+         "max_": 30,
          "on": true
       },
       // Generic constraint that [targets] cannot be the [relationship] of
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
          "targets" : ["product_reichenbach"],
-         "effectors" : ["product_reichenbach", "add", "sub", "div", "mul"],
+         "effectors" : ["add", "sub", "div", "mul"],
          "relationship" : "child",
          "on" : true
       },
       "repeat" : {
          "tokens" : "product_reichenbach",
-         "min_" : 1,
+         "min_" : null,
          "max_" : 1,
          "on" : true
       },
