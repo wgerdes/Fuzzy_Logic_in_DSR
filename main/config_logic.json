@@ -8,7 +8,7 @@
       
       // threshold of sigmoid
       // TODO tweakable
-      "sigmoid_threshold" : 0.5,
+      "sigmoid_threshold" : 0.7,
 
       // This can either be (1) the name of the benchmark dataset (see
       // benchmarks.csv for a list of supported benchmarks) or (2) a path to a
@@ -96,7 +96,7 @@
    // Only the key training hyperparameters are listed here. See
    // config_common.json for the full list.
    "training" : {
-      "n_samples" : 50000, // TODO tweakable
+      "n_samples" : 20000, // TODO tweakable
       "batch_size" : 500, // TODO tweakable
 
       // To use the risk-seeking policy gradient, set epsilon < 1.0 and

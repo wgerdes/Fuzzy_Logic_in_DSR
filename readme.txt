@@ -110,7 +110,7 @@ cp main/regression.py deep-symbolic-optimization/dso/dso/task/regression/
 cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 
 cd deep-symbolic-optimization/dso
-python -m dso.run dso/config/config_logic.json --runs=6 --n_cores_task=4
+python -m dso.run dso/config/config_logic.json --runs=5 --n_cores_task=4
 
 
 
