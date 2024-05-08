@@ -1,6 +1,10 @@
-Questions
-Computing possibilities / necessities
+TODO
 Adding noise
+
+FB 30/04
+Add noise
+Fuzzy to correspond to percentiles
+Try to release some constraints and test output
     
 !!! USE LOGIC_FORMULA AS ROOT OPERATOR, WITH a TO LEFT SIDE AND b TO RIGHT SIDE --DONE
 program.py --> lines 150 + 151 --> added token (18) to pos[0] in traversal --> which 
@@ -110,7 +114,7 @@ cp main/regression.py deep-symbolic-optimization/dso/dso/task/regression/
 cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 
 cd deep-symbolic-optimization/dso
-python -m dso.run dso/config/config_logic.json --runs=5 --n_cores_task=4
+python -m dso.run dso/config/config_logic.json --runs=1 --n_cores_task=4
 
 
 
