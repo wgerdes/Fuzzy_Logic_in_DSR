@@ -111,7 +111,7 @@
 
       // Recommended to set this to as many cores as you can use! Especially if
       // using the "const" token.
-      "n_cores_batch" : 4,
+      "n_cores_batch" : 8,
 
       // The complexity measure is only used to compute a Pareto front. It does
       // not affect the optimization.
@@ -168,7 +168,7 @@
       "pqt_k" : 10,
       "pqt_batch_size" : 1,
       "pqt_weight" : 200.0,
-      "pqt_use_pg" : true
+      "pqt_use_pg" : false
 
    },
 
@@ -179,7 +179,7 @@
    "prior": {
       "length": {
          "min_": 4,
-         "max_": 30,
+         "max_": 256,
          "on": true
       },
       // Generic constraint that [targets] cannot be the [relationship] of

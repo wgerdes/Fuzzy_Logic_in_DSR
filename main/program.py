@@ -142,11 +142,11 @@ def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, ad
   
     if finish_tokens:
         tokens = _finish_tokens(tokens)
-
-    # Add product_reichenbach or lukasciewicz token to the tokens to ensure appearal in
+    
+    # # Add product_reichenbach or lukasciewicz token to the tokens to ensure appearal in
     if add_logic:
-        if 23 not in tokens:
-            tokens[0] = 23
+        if 21 not in tokens:
+            tokens[0] = 21
 
     # For stochastic Tasks, there is no cache; always generate a new Program.
     # For deterministic Programs, if the Program is in the cache, return it;
@@ -237,6 +237,7 @@ class Program(object):
         # Can be empty if we are unpickling 
         if tokens is not None:
             self._init(tokens, on_policy)
+            
             
     def _init(self, tokens, on_policy=True):
         self.traversal = [Program.library[t] for t in tokens]
