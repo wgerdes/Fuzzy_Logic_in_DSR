@@ -148,7 +148,7 @@
    "policy_optimizer" : {
 
       // Optimizer hyperparameters.
-      "learning_rate" : 0.0025, //TODO tweakable
+      "learning_rate" : 0.01, //TODO tweakable
       "optimizer" : "adam",
 
       // Entropy regularizer hyperparameters.

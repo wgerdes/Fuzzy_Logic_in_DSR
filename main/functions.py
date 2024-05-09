@@ -164,6 +164,7 @@ def create_state_checkers(n_states, threshold_set):
         constructing StateChecker (si < tij). The sizes of the threshold lists can be different.
     """
     tokens = []
+    
     if isinstance(threshold_set[0], list):
         assert len(threshold_set) == n_states, \
             "If threshold_set is a list of lists, its length must equal n_states."
