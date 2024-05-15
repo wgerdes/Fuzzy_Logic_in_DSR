@@ -148,7 +148,7 @@
    "policy_optimizer" : {
 
       // Optimizer hyperparameters.
-      "learning_rate" : 0.01, //TODO tweakable
+      "learning_rate" : 0.0025, //TODO tweakable
       "optimizer" : "adam",
 
       // Entropy regularizer hyperparameters.
@@ -185,7 +185,7 @@
       // Generic constraint that [targets] cannot be the [relationship] of
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
-         "targets" : ["product_reichenbach"],
+         "targets" : ["product_reichenbach"],   
          "effectors" : ["add", "sub", "div", "mul"],
          "relationship" : "child",
          "on" : true

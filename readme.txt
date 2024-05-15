@@ -116,7 +116,19 @@ cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 cd deep-symbolic-optimization/dso
 python -m dso.run dso/config/config_logic.json --runs=4 --n_cores_task=4
 
+!TO SNELLIUS
 
+Login
+ssh -X wgerdes@snellius.surf.nl
 
+Copy files from pc
+scp deep-symbolic-optimization/dso/dso/task/regression/data/train_df.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+scp main/functions.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
+scp main/program.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
+scp main/regression.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/
+scp main/config_logic.json wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/config/
 
-python -m dso.run dso/config/config_logic.json
+Run?
+source $HOME/venv3/bin/activate
+cd $HOME/deep-symbolic-optimization/dso
+srun python3 -m dso.run dso/config/config_logic.json

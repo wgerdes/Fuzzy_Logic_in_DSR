@@ -185,7 +185,7 @@
       // Generic constraint that [targets] cannot be the [relationship] of
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
-         "targets" : ["product_reichenbach"],
+         "targets" : ["product_reichenbach"],   
          "effectors" : ["add", "sub", "div", "mul"],
          "relationship" : "child",
          "on" : true
