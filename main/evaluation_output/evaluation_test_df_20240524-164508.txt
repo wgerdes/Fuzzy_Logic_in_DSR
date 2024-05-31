@@ -1,0 +1,4 @@
+equation: lukasiewicz(x16, -x8*(x16*(-x10 + x3 - x4 - 0.7797903311701913) + x8) - 0.6612440786056896)
+threshold: 0.7
+dataset: test_df
+Evaluated equation: lukasiewicz(oldbalanceOrig6, -meanDest3*(oldbalanceOrig6*(-oldbalanceOrig0 + oldbalanceDest - newbalanceDest - 0.7797903311701913) + meanDest3) - 0.6612440786056896)

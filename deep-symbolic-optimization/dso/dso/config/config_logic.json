@@ -21,9 +21,7 @@
       // increase runtime.
 
       // TODO: Tweakable
-      "function_set": ["product_reichenbach", "add", "sub", "div", "mul", "const"],
-      
-   //"sin", "cos", "exp", "sqrt", "n2", "log"
+      "function_set": ["product_reichenbach", "add", "sub", "div", "mul"],
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
@@ -96,7 +94,7 @@
    // Only the key training hyperparameters are listed here. See
    // config_common.json for the full list.
    "training" : {
-      "n_samples" : 20000, // TODO tweakable
+      "n_samples" : 200000, // TODO tweakable
       "batch_size" : 500, // TODO tweakable
 
       // To use the risk-seeking policy gradient, set epsilon < 1.0 and
@@ -111,7 +109,7 @@
 
       // Recommended to set this to as many cores as you can use! Especially if
       // using the "const" token.
-      "n_cores_batch" : 8,
+      "n_cores_batch" : 4,
 
       // The complexity measure is only used to compute a Pareto front. It does
       // not affect the optimization.
@@ -185,16 +183,16 @@
       // Generic constraint that [targets] cannot be the [relationship] of
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
-         "targets" : ["product_reichenbach"],   
+         "targets" : ["lukas"],   
          "effectors" : ["add", "sub", "div", "mul"],
          "relationship" : "child",
-         "on" : true
+         "on" : false
       },
       "repeat" : {
-         "tokens" : "product_reichenbach",
+         "tokens" : "lukas",
          "min_" : null,
          "max_" : 1,
-         "on" : true
+         "on" : false
       },
       "inverse" : {
          "on" : true

@@ -21,9 +21,7 @@
       // increase runtime.
 
       // TODO: Tweakable
-      "function_set": ["product_reichenbach", "add", "sub", "div", "mul", "const"],
-      
-   //"sin", "cos", "exp", "sqrt", "n2", "log"
+      "function_set": ["product_reichenbach", "add", "sub", "div", "mul"],
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
@@ -111,7 +109,7 @@
 
       // Recommended to set this to as many cores as you can use! Especially if
       // using the "const" token.
-      "n_cores_batch" : 8,
+      "n_cores_batch" : 4,
 
       // The complexity measure is only used to compute a Pareto front. It does
       // not affect the optimization.

@@ -1,0 +1,10 @@
+equation: lukas(x3, (-x14 + x21)*product_reichenbach(x8, x20))
+threshold: 0.7
+dataset: test_df
+Evaluated equation: lukas(oldbalanceDest, (-oldbalanceOrig4 + newbalanceOrig1)*product_reichenbach(meanDest3, newbalanceOrig0))
+
+log_loss = 0.1146705687092196
+accuracy = 0.99668
+precision_score = 0.10546875
+recall_score = 0.2076923076923077
+f1_score = 0.13989637305699482

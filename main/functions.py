@@ -32,11 +32,11 @@ def harmonic(x1):
     else:
         return GAMMA + np.log(x1) + 0.5/x1 - 1./(12*x1**2) + 1./(120*x1**4)
 
-def product_reichenbach(x1, x2): #ADDED
-    return 1.0 - x1 + x1 * x2
+def product_reichenbach(x1, x2): # ADDED
+    return 1.0 - x1 + x1 * x2 
 
 def lukas(x1, x2): # ADDED
-    return np.minimum(1 - x1 + x2, 1)
+    return np.minimum(1 - x1 + x2, 1)   
 
 # Annotate unprotected ops
 unprotected_ops = [
@@ -146,7 +146,6 @@ function_map.update({
 TERMINAL_TOKENS = set([op.name for op in function_map.values() if op.arity == 0])
 UNARY_TOKENS    = set([op.name for op in function_map.values() if op.arity == 1])
 BINARY_TOKENS   = set([op.name for op in function_map.values() if op.arity == 2])
-
 
 def create_state_checkers(n_states, threshold_set):
     """

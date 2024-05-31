@@ -14,7 +14,6 @@ from dso.logeval import LogEval
 from dso.config import load_config
 from dso.utils import safe_update_summary
 
-
 def train_dso(config):
     """Trains DSO and returns dict of reward, expression, and traversal"""
 

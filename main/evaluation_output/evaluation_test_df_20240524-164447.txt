@@ -1,0 +1,10 @@
+equation: product_reichenbach(x3 + x5, -x14 + x21)
+threshold: 0.7
+dataset: test_df
+Evaluated equation: product_reichenbach(oldbalanceDest + externalDest, -oldbalanceOrig4 + newbalanceOrig1)
+
+log_loss = 0.10879884079052163
+accuracy = 0.99685
+precision_score = 0.11297071129707113
+recall_score = 0.2076923076923077
+f1_score = 0.14634146341463417

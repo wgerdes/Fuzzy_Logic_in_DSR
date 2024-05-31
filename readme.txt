@@ -1,11 +1,18 @@
 TODO
 Adding noise
-
-FB 30/04
-Add noise
-Fuzzy to correspond to percentiles
-Try to release some constraints and test output
+Fix pickle ISSUES
+Fix server ISSUES
     
+!!! ISSUES
+Lukas / Reichenbach both get:
+  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+_pickle.PicklingError: Can't pickle produch_reichenbach: produch_reichenbach lookup product_reichenbach on __main__ 
+
+Error originates from multiprocessing, not when just using 1 core
+!!!
+
+
 !!! USE LOGIC_FORMULA AS ROOT OPERATOR, WITH a TO LEFT SIDE AND b TO RIGHT SIDE --DONE
 program.py --> lines 150 + 151 --> added token (18) to pos[0] in traversal --> which 
 LINE108: program.py - from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = True):
@@ -27,34 +34,12 @@ LINE151     tokens[0] = 18
          "on" : true
       },
 
-
-!!! ISSUES
-Lukas / Reichenbach both get:
-  File "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/multiprocessing/reduction.py", line 51, in dumps
-    cls(buf, protocol).dump(obj)
-_pickle.PicklingError: Can't pickle lukas: attribute lookup lukas on __main__ 
-
-Error originates from multiprocessing, not when just using 1 core
-!!!
-
-
-Todo
 Data preparation
     Create working hours feature --DONE
     Test out possible log transformable columns --DONE
     Why should we add noise? --Questions
-    Check weekly / 24h lag to see if we need to transform --IRRELEVANT
     Fuzzyfying columns --DONE
-        Currently just based on percentile
-    Used columns:
-        log_amount', 'step', 'oldbalanceOrig', 'newbalanceOrig',
-       'oldbalanceDest', 'newbalanceDest', 'is_workday', 'meanDest3',
-       'meanDest7', 'maxDest3', 'maxDest7', 'type_CASH_IN', 'type_CASH_OUT',
-       'type_DEBIT', 'type_PAYMENT', 'type_TRANSFER', 'type2_CC', 'type2_CM',
-       'isFraud'
-    Fuzzified columns:
-        'log_amount', 'oldbalanceOrig', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest', 'is_workday', 'meanDest3', 'meanDest7', 'maxDest3', 'maxDest7'
-
+        Fuzzy clustering --TODO
 
 DSR
     Incorporate Product (Reichenbach) and Lukasiewics into DSR framework (functions.py) -- DONE
@@ -66,7 +51,7 @@ DSR
     Enable multiprocessing with logical formula --TODO
 
 Data evaluate_expression  
-    Create script to gather performance from formula and create understandable formula --TODO
+    Create script to gather performance from formula and create understandable formula --DONE
 
 Tweakable parameters:
     Sigmoid treshold (config)
@@ -104,6 +89,8 @@ pip install --upgrade setuptools pip
 export CFLAGS="-I $(python -c "import numpy; print(numpy.get_include())") $CFLAGS" # Needed on Mac to prevent fatal error: 'numpy/arrayobject.h' file not found
 pip install -e ./dso # Install DSO package and core dependencies
 
+Evaluate expressions
+python main/evaluate_expression.py --equation "product_reichenbach(x2, -x10 + x21 - x3)"
 
 Copy to DSO:
 cd ..
@@ -114,21 +101,29 @@ cp main/regression.py deep-symbolic-optimization/dso/dso/task/regression/
 cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 
 cd deep-symbolic-optimization/dso
-python -m dso.run dso/config/config_logic.json --runs=4 --n_cores_task=4
+python -m dso.run dso/config/config_logic.json --runs=4 --n_cores_task=4 --seed=42
 
 !TO SNELLIUS
-
 Login
 ssh -X wgerdes@snellius.surf.nl
 
-Copy files from pc
+passw = key
+
+
+Copy files from pc line by line (first copy them locally)
+
 scp deep-symbolic-optimization/dso/dso/task/regression/data/train_df.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+
+scp data/train_df.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+
 scp main/functions.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
 scp main/program.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
 scp main/regression.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/
 scp main/config_logic.json wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/config/
 
-Run?
+Run
 source $HOME/venv3/bin/activate
 cd $HOME/deep-symbolic-optimization/dso
-srun python3 -m dso.run dso/config/config_logic.json
+srun python -m dso.run dso/config/config_logic.json
+
+srun python -m dso.run dso/config/config_regression.json --b Nguyen-7
