@@ -1,0 +1,10 @@
+equation: x1*x11*product_reichenbach(x3, product_reichenbach(x3, x18))
+threshold: 0.7
+dataset: test_df
+Evaluated equation: oldbalanceOrig*maxDest7*product_reichenbach(oldbalanceDest, product_reichenbach(oldbalanceDest, type_CASH_OUT))
+
+log_loss = 0.3338819415746424
+accuracy = 0.9903333333333333
+precision_score = 0.07785467128027682
+recall_score = 0.4891304347826087
+f1_score = 0.13432835820895522

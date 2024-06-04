@@ -1,0 +1,10 @@
+equation: fuzzy_not(fuzzy_not(x1*fuzzy_and(fuzzy_and(x10, product_reichenbach(fuzzy_or(probabilistic_sum(x5, fuzzy_not(fuzzy_and(fuzzy_not(fuzzy_and(fuzzy_not(x9), x3)), x1))), x14), x14)), x13)))
+threshold: 0.7
+dataset: 200k_test
+Evaluated equation: fuzzy_not(fuzzy_not(oldbalanceOrig*fuzzy_and(fuzzy_and(maxDest3, product_reichenbach(fuzzy_or(probabilistic_sum(externalDest, fuzzy_not(fuzzy_and(fuzzy_not(fuzzy_and(fuzzy_not(meanDest7), oldbalanceDest)), oldbalanceOrig))), type_DEBIT), type_DEBIT)), type_CASH_OUT)))
+
+log_loss = 0.13873323060492582
+accuracy = 0.9959833333333333
+precision_score = 0.11004784688995216
+recall_score = 0.2948717948717949
+f1_score = 0.1602787456445993

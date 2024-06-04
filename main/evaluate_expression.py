@@ -3,12 +3,12 @@ import numpy as np
 from sklearn.metrics import log_loss, accuracy_score, precision_score, recall_score, f1_score
 import argparse
 import time
-from functions import product_reichenbach, lukas
+from functions import product_reichenbach, lukasiewicz, fuzzy_and, fuzzy_not, fuzzy_or, probabilistic_sum, lukasiewicz_conorm
 import re
 
 
 def equation(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, 
-             x14, x15,x16, x17, x18, x19, x20, x21, func):
+             x14, x15,x16, func):
     
     func = func.replace("sqrt", "np.sqrt")
     func = func.replace("exp", "np.exp")
@@ -16,7 +16,12 @@ def equation(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13,
     func = func.replace("sin", "np.sin")
     func = func.replace("cos", "np.cos")
     func = func.replace("product_reichenbach", "product_reichenbach")
-    func = func.replace("lukas", "lukas")
+    func = func.replace("lukasiewicz", "lukasiewicz")
+    func = func.replace("fuzzy_and", "fuzzy_and")
+    func = func.replace("fuzzy_or", "fuzzy_or")
+    func = func.replace("fuzzy_not", "fuzzy_not")
+    func = func.replace("probabilistic_sum", "probabilistic_sum")
+    func = func.replace("lukasiewicz_conorm", "lukasiewicz_conorm")
     func = eval(func)
 
     return func
@@ -42,7 +47,7 @@ def main(args):
     f.write('\nthreshold: ' + str(args.threshold))
     f.write('\ndataset: ' + str(args.dataset))
 
-    dataset = 'deep-symbolic-optimization/dso/dso/task/regression/data/' + args.dataset + '.csv'
+    dataset = 'data/' + args.dataset + '.csv'
     threshold = args.threshold
     func = args.equation
 
@@ -58,9 +63,8 @@ def main(args):
     var_mapping = {
         'x1': 'oldbalanceOrig', 'x2': 'newbalanceOrig', 'x3': 'oldbalanceDest', 'x4': 'newbalanceDest', 'x5': 'externalDest',
         'x6': 'externalOrig', 'x7': 'is_workday', 'x8': 'meanDest3', 'x9': 'meanDest7', 'x10': 'maxDest3',
-        'x11': 'maxDest7', 'x12': 'log_amount', 'x13': 'log_meanDest3', 'x14': 'log_maxDest3', 'x15': 'log_meanDest7',
-        'x16': 'log_maxDest7', 'x17': 'type_CASH_IN', 'x18': 'type_CASH_OUT', 'x19': 'type_DEBIT', 'x20': 'type_PAYMENT',
-        'x21': 'type_TRANSFER'
+        'x11': 'maxDest7', 'x12': 'type_CASH_IN', 'x13': 'type_CASH_OUT', 'x14': 'type_DEBIT', 'x15': 'type_PAYMENT',
+        'x16': 'type_TRANSFER'
     }
 
     # Replace variable names with column names in the equation
@@ -71,14 +75,12 @@ def main(args):
     # make predictions based on given equation
     df = pd.read_csv(dataset, header=None, names=['x1', 'x2', 'x3', 'x4', 'x5', 'x6',
                                                   'x7', 'x8', 'x9', 'x10', 'x11', 'x12', 
-                                                  'x13', 'x14', 'x15', 'x16', 'x17', 'x18', 
-                                                  'x19', 'x20', 'x21', 'y'])
+                                                  'x13', 'x14', 'x15', 'x16', 'y'])
 
     df['eq']=df.apply(lambda x: equation(x['x1'], x['x2'], x['x3'], x['x4'], x['x5'], 
                                          x['x6'], x['x7'], x['x8'], x['x9'], x['x10'], 
                                          x['x11'], x['x12'],x['x13'], x['x14'], x['x15'], 
-                                         x['x16'], x['x17'], x['x18'], x['x19'], x['x20'], 
-                                         x['x21'], func=func), axis=1)
+                                         x['x16'], func=func), axis=1)
     df['sigmoid']=df.apply(lambda x: 1 / (1 + np.exp(-x['eq'])), axis=1)
     df.loc[df['sigmoid'] <= threshold, 'pred'] = 0
     df.loc[df['sigmoid'] > threshold, 'pred'] = 1
@@ -119,7 +121,7 @@ if __name__ == "__main__":
     parser.add_argument('--threshold', type=float, default=0.7,
                         help='sigmoid threshold between 0.0 and 1.0')
 
-    parser.add_argument('--dataset', type=str, default="test_df",
+    parser.add_argument('--dataset', type=str, default="200k_test",
                         help='"train_df", "val_df", or "test_df"')
 
     args = parser.parse_args()
@@ -130,7 +132,7 @@ if __name__ == "__main__":
     if args.threshold < 0 or args.threshold > 1:
         parser.error("threshold must have value between 0 and 1")
     
-    if args.dataset not in ["train_df", "val_df", "test_df"]:
-        parser.error('Please enter "train_df", "val_df", or "test_df"')
+    # if args.dataset not in ["train_df", "val_df", "test_df"]:
+    #     parser.error('Please enter "train_df", "val_df", or "test_df"')
 
     main(args)

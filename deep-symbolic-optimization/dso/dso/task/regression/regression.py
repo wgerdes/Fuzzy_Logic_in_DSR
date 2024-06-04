@@ -6,7 +6,7 @@ from dso.library import Library, Polynomial
 from dso.functions import create_tokens
 from dso.task.regression.dataset import BenchmarkDataset
 from dso.task.regression.polyfit import PolyOptimizer, make_poly_data
-from sklearn.metrics import log_loss, f1_score
+from sklearn.metrics import log_loss, f1_score, fbeta_score
 
 class RegressionTask(HierarchicalTask):
     """
@@ -80,12 +80,10 @@ class RegressionTask(HierarchicalTask):
         (1) named benchmark, (2) benchmark config, (3) filename, and (4) direct
         (X, y) data.
         """
-        # self.protected = protected #DIFF
-        self.classification = classification #DIFF
-        self.sigmoid_threshold = sigmoid_threshold #DIFF
-        # print('protected = ', self.protected)
-        print('classification = ', self.classification) #DIFF
-        print('sigmoid_threshold = ', self.sigmoid_threshold) #DIFF
+        self.classification = classification 
+        self.sigmoid_threshold = sigmoid_threshold 
+        print('classification = ', self.classification) 
+        print('sigmoid_threshold = ', self.sigmoid_threshold) 
 
         self.X_test = self.y_test = self.y_test_noiseless = None
 
@@ -386,6 +384,16 @@ def make_regression_metric(name, y_train, *args):
         # F1-score
         # Range: [0, 1]
         "f1_score" :     (lambda y, y_hat : f1_score(y, y_hat),
+                        1),
+
+        # F2-score
+        # Range: [0, 1]
+        "f2_score" :     (lambda y, y_hat : fbeta_score(y, y_hat, beta = 2.0),
+                        1),
+
+        # F4-score
+        # Range: [0, 1]
+        "f4_score" :     (lambda y, y_hat : fbeta_score(y, y_hat, beta = 4.0),
                         1)
     }
 
@@ -408,7 +416,9 @@ def make_regression_metric(name, y_train, *args):
         "fraction" : 0.0,
         "pearson" : 0.0,
         "spearman" : 0.0,
-        "f1_score": 0.0
+        "f1_score": 0.0,
+        "f2_score": 0.0,
+        "f4_score": 0.0
     }
     invalid_reward = all_invalid_rewards[name]
 
@@ -424,7 +434,9 @@ def make_regression_metric(name, y_train, *args):
         "fraction" : 1.0,
         "pearson" : 1.0,
         "spearman" : 1.0,
-        "f1_score": 0.0
+        "f1_score": 0.0,
+        "f2_score" : 0.0,
+        "f4_score" : 0.0
     }
     max_reward = all_max_rewards[name]
 

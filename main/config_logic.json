@@ -7,21 +7,18 @@
       "classification" : true,
       
       // threshold of sigmoid
-      // TODO tweakable
       "sigmoid_threshold" : 0.7,
 
       // This can either be (1) the name of the benchmark dataset (see
       // benchmarks.csv for a list of supported benchmarks) or (2) a path to a
       // CSV file containing the data.
-      "dataset" : "dso/task/regression/data/train_df.csv",
+      "dataset" : "dso/task/regression/data/200k_train.csv",
 
       // To customize a function set, edit this! See functions.py for a list of
       // supported functions. Note "const" will add placeholder constants that
       // will be optimized within the training loop. This will considerably
       // increase runtime.
-
-      // TODO: Tweakable
-      "function_set": ["product_reichenbach", "add", "sub", "div", "mul"],
+      "function_set": ["product_reichenbach", "mul", "fuzzy_and", "fuzzy_or", "fuzzy_not", "probabilistic_sum"],
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
@@ -109,7 +106,7 @@
 
       // Recommended to set this to as many cores as you can use! Especially if
       // using the "const" token.
-      "n_cores_batch" : 4,
+      "n_cores_batch" : 1,
 
       // The complexity measure is only used to compute a Pareto front. It does
       // not affect the optimization.
@@ -146,7 +143,7 @@
    "policy_optimizer" : {
 
       // Optimizer hyperparameters.
-      "learning_rate" : 0.0025, //TODO tweakable
+      "learning_rate" : 0.005, //TODO tweakable
       "optimizer" : "adam",
 
       // Entropy regularizer hyperparameters.
@@ -176,23 +173,23 @@
    // TODO tweakable
    "prior": {
       "length": {
-         "min_": 4,
-         "max_": 256,
+         "min_": 2,
+         "max_": 128,
          "on": true
       },
       // Generic constraint that [targets] cannot be the [relationship] of
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
-         "targets" : ["product_reichenbach"],   
-         "effectors" : ["add", "sub", "div", "mul"],
+         "targets" : ["product_reichenbach", "lukasiewicz"],   
+         "effectors" : ["mul", "fuzzy_and", "fuzzy_or", "fuzzy_not", "probabilistic_sum"],
          "relationship" : "child",
-         "on" : true
+         "on" : false
       },
       "repeat" : {
          "tokens" : "product_reichenbach",
          "min_" : null,
          "max_" : 1,
-         "on" : true
+         "on" : false
       },
       "inverse" : {
          "on" : true

@@ -1,0 +1,10 @@
+equation: fuzzy_not(product_reichenbach(fuzzy_not(product_reichenbach(x21, fuzzy_or(x18, x7))), product_reichenbach(fuzzy_and(x14, fuzzy_not(x20)), product_reichenbach(probabilistic_sum(x5, x15), x3))))
+threshold: 0.5
+dataset: test_df
+Evaluated equation: fuzzy_not(product_reichenbach(fuzzy_not(product_reichenbach(type_TRANSFER, fuzzy_or(type_CASH_OUT, is_workday))), product_reichenbach(fuzzy_and(log_maxDest3, fuzzy_not(type_PAYMENT)), product_reichenbach(probabilistic_sum(externalDest, log_meanDest7), oldbalanceDest))))
+
+log_loss = 0.2935854284220079
+accuracy = 0.9915
+precision_score = 0.022788203753351208
+recall_score = 0.12318840579710146
+f1_score = 0.038461538461538464

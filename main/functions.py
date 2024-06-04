@@ -35,8 +35,28 @@ def harmonic(x1):
 def product_reichenbach(x1, x2): # ADDED
     return 1.0 - x1 + x1 * x2 
 
-def lukas(x1, x2): # ADDED
+def lukasiewicz(x1, x2): # ADDED
     return np.minimum(1 - x1 + x2, 1)   
+
+def fuzzy_and(x1, x2):
+    """Fuzzy AND operation (min)"""
+    return np.minimum(x1, x2)
+
+def fuzzy_or(x1, x2):
+    """Fuzzy OR operation (max)"""
+    return np.maximum(x1, x2)
+
+def fuzzy_not(x1):
+    """Fuzzy NOT operation (complement)"""
+    return 1 - x1
+
+def probabilistic_sum(x1, x2):
+    """Probabilistic Sum T-Conorm"""
+    return x1 + x2 - x1 * x2
+
+def lukasiewicz_conorm(x1, x2):
+    """Lukasiewicz T-Conorm"""
+    return np.minimum(x1 + x2, 1)
 
 # Annotate unprotected ops
 unprotected_ops = [
@@ -44,7 +64,7 @@ unprotected_ops = [
     Token(np.add, "add", arity=2, complexity=1),
     Token(np.subtract, "sub", arity=2, complexity=1),
     Token(np.multiply, "mul", arity=2, complexity=1),
-    Token(np.divide, "div", arity=2, complexity=2),
+    Token(np.divide, "div", arity=2, complexity=1),
 
     # Built-in unary operators
     Token(np.sin, "sin", arity=1, complexity=3),
@@ -53,7 +73,7 @@ unprotected_ops = [
     Token(np.exp, "exp", arity=1, complexity=4),
     Token(np.log, "log", arity=1, complexity=4),
     Token(np.sqrt, "sqrt", arity=1, complexity=4),
-    Token(np.square, "n2", arity=1, complexity=2),
+    Token(np.square, "n2", arity=1, complexity=2), 
     Token(np.negative, "neg", arity=1, complexity=1),
     Token(np.abs, "abs", arity=1, complexity=2),
     Token(np.maximum, "max", arity=1, complexity=4),
@@ -68,8 +88,13 @@ unprotected_ops = [
     Token(n4, "n4", arity=1, complexity=3),
     Token(sigmoid, "sigmoid", arity=1, complexity=4),
     Token(harmonic, "harmonic", arity=1, complexity=4),
-    Token(product_reichenbach, "product_reichenbach", arity=2, complexity=1), #ADDED, complexity can be tweaked
-    Token(lukas, "lukas", arity=2, complexity=1) #ADDED, complexity can be tweaked
+    Token(product_reichenbach, "product_reichenbach", arity=2, complexity=2), #ADDED, complexity can be tweaked
+    Token(lukasiewicz, "lukasiewicz", arity=2, complexity=2), #ADDED, complexity can be tweaked
+    Token(fuzzy_and, "fuzzy_and", arity=2, complexity=1), # ADDED
+    Token(fuzzy_or, "fuzzy_or", arity=2, complexity=1), # ADDED
+    Token(fuzzy_not, "fuzzy_not", arity=1, complexity=1), # ADDED
+    Token(probabilistic_sum, "probabilistic_sum", arity=2, complexity=3), # ADDED
+    Token(lukasiewicz_conorm, "lukasiewicz_conorm", arity=2, complexity=3) # ADDED
 ]
 
 

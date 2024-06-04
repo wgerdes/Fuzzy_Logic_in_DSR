@@ -1,4 +1,0 @@
-equation: product_reichenbach(x10 + x18 - x21 + x3*(x11 + x12 - x13 + x17 + 2*x21 + x3 - x9),  x6))
-threshold: 0.7
-dataset: test_df
-Evaluated equation: product_reichenbach(oldbalanceOrig0 + oldbalanceOrig8 - newbalanceOrig1 + oldbalanceDest*(oldbalanceOrig1 + oldbalanceOrig2 - oldbalanceOrig3 + oldbalanceOrig7 + 2*newbalanceOrig1 + oldbalanceDest - meanDest7),  externalOrig))

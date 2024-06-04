@@ -1,7 +1,0 @@
-complexity,r,count_on_policy,count_off_policy,expression,traversal,nmse_test,nmse_test_noiseless,success,f1_score,f1_score_noiseless
-5,0.11945392491467577,1,0,"product_reichenbach(x3, x21 - x9)","product_reichenbach,x3,sub,x21,x9",2.425764510271905,2.425764510271905,False,0.11945392491467577,0.11945392491467577
-7,0.11962616822429907,1,0,"product_reichenbach(x3, x21 - x5 - x8)","product_reichenbach,x3,sub,x21,add,x8,x5",2.214215279724937,2.214215279724937,False,0.11962616822429907,0.11962616822429907
-9,0.13024602026049203,1,0,"product_reichenbach(x3, x4*(-x11*x14 + x21))","product_reichenbach,x3,mul,x4,sub,x21,mul,x14,x11",2.825357501305068,2.825357501305068,False,0.13024602026049203,0.13024602026049203
-11,0.13545816733067728,1,0,"product_reichenbach(x16, x21 - x3 + x5)","product_reichenbach,x16,sub,x21,sub,x21,sub,x5,sub,x3,x21",3.060412201912811,3.060412201912811,False,0.13545816733067728,0.13545816733067728
-13,0.13965087281795513,1,0,"product_reichenbach(x3, -x16 + x21 - x4*(x16*x4 + x8))","product_reichenbach,x3,sub,x21,add,x16,mul,add,mul,x16,x4,x8,x4",1.6218774341934252,1.6218774341934252,False,0.13965087281795513,0.13965087281795513
-15,0.14678899082568808,1,0,"product_reichenbach(x2, -x11 + x21 - x3 - x4 + x9)","product_reichenbach,x2,add,sub,sub,sub,x4,x4,x4,add,x11,x3,add,x9,x21",3.060412201912811,3.060412201912811,False,0.14678899082568808,0.14678899082568808

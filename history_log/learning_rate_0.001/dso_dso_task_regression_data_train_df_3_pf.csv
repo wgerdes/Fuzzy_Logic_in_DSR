@@ -1,3 +1,0 @@
-complexity,r,count_on_policy,count_off_policy,expression,traversal,nmse_test,nmse_test_noiseless,success,f1_score,f1_score_noiseless
-5,0.03952569169960474,1,0,"product_reichenbach(x15, -x14 + x21)","product_reichenbach,x15,sub,x21,x14",1.1423658449536298,1.1423658449536298,False,0.03952569169960474,0.03952569169960474
-7,0.12265758091993186,1,0,"product_reichenbach(x3, -x15 + x21 + x6)","product_reichenbach,x3,sub,x6,sub,x15,x21",2.4210634162597504,2.4210634162597504,False,0.12265758091993186,0.12265758091993186

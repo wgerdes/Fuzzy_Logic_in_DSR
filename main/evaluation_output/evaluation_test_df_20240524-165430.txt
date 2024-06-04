@@ -1,4 +1,0 @@
-equation: lukas(x10, x21*product_reichenbach(x3, -x3 - x6 + x9), -x3 - x6 + x9), x6)))
-threshold: 0.7
-dataset: test_df
-Evaluated equation: lukas(oldbalanceOrig0, newbalanceOrig1*product_reichenbach(oldbalanceDest, -oldbalanceDest - externalOrig + meanDest7), -oldbalanceDest - externalOrig + meanDest7), externalOrig)))

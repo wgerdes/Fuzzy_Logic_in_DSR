@@ -105,7 +105,7 @@ def from_str_tokens(str_tokens, skip_cache=True):
     return p
 
 
-def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = True):
+def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = False):
 
     """
     Memoized function to generate a Program from a list of tokens.
@@ -146,7 +146,7 @@ def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, ad
     # # Add product_reichenbach or lukasciewicz token to the tokens to ensure appearal in
     if add_logic:
         if 21 not in tokens:
-            tokens[0] = 21
+            tokens[-1] = 21
 
     # For stochastic Tasks, there is no cache; always generate a new Program.
     # For deterministic Programs, if the Program is in the cache, return it;
