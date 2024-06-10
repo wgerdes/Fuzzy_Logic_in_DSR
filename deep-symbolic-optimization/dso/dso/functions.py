@@ -32,11 +32,53 @@ def harmonic(x1):
     else:
         return GAMMA + np.log(x1) + 0.5/x1 - 1./(12*x1**2) + 1./(120*x1**4)
 
-def product_reichenbach(x1, x2): # ADDED
-    return 1.0 - x1 + x1 * x2 
+def product_s_implication(x1, x2):
+    "S-implication Product (reichenbach)"
+    return 1 - x1 + x1 * x2 
 
-def lukasiewicz(x1, x2): # ADDED
+def product_r_implication(x1, x2):
+    """R-implication Product (Goguen)"""
+    return np.where(x1 <= x2, 1, x2 / x1)
+
+def product_norm(x1, x2):
+    """Product T-norm"""
+    return x1 * x2
+
+def product_conorm(x1, x2):
+    """Product T-conorm"""
+    return x1 + x2 - x1 * x2
+
+def lukasiewicz_s_implication(x1, x2):
+    "S-implication Lukasiewicz"
     return np.minimum(1 - x1 + x2, 1)   
+
+def lukasiewicz_r_implication(x1, x2):
+    """R-implication Lukasiewicz"""
+    return np.minimum(1 - x1 + x2, 1)
+
+def lukasiewicz_norm(x1, x2):
+    """Lukasiewicz T-norm"""
+    return np.maximum(x1 + x2 - 1, 0)
+
+def lukasiewicz_conorm(x1, x2):
+    """Lukasiewicz T-Conorm"""
+    return np.minimum(x1 + x2, 1)
+
+def godel_s_implication(x1, x2):
+    "S-implication Godel"
+    return np.maximum(1 - x1, x2)
+
+def godel_r_implication(x1, x2):
+    """R-implication Godel"""
+    return np.where(x1 <= x2, 1, x2)
+
+def godel_norm(x1, x2):
+    """Godel T-norm"""
+    return np.minimum(x1, x2)
+
+def godel_conorm(x1, x2):
+    """Godel T-conorm"""
+    return np.maximum(x1, x2)
 
 def fuzzy_and(x1, x2):
     """Fuzzy AND operation (min)"""
@@ -49,14 +91,6 @@ def fuzzy_or(x1, x2):
 def fuzzy_not(x1):
     """Fuzzy NOT operation (complement)"""
     return 1 - x1
-
-def probabilistic_sum(x1, x2):
-    """Probabilistic Sum T-Conorm"""
-    return x1 + x2 - x1 * x2
-
-def lukasiewicz_conorm(x1, x2):
-    """Lukasiewicz T-Conorm"""
-    return np.minimum(x1 + x2, 1)
 
 # Annotate unprotected ops
 unprotected_ops = [
@@ -88,13 +122,25 @@ unprotected_ops = [
     Token(n4, "n4", arity=1, complexity=3),
     Token(sigmoid, "sigmoid", arity=1, complexity=4),
     Token(harmonic, "harmonic", arity=1, complexity=4),
-    Token(product_reichenbach, "product_reichenbach", arity=2, complexity=2), #ADDED, complexity can be tweaked
-    Token(lukasiewicz, "lukasiewicz", arity=2, complexity=2), #ADDED, complexity can be tweaked
+
+    Token(product_s_implication, "product_s_implication", arity=2, complexity=2), #ADDED, complexity can be tweaked
+    Token(product_r_implication, "product_r_implication", arity=2, complexity=2), #ADDED, complexity can be tweaked    
+    Token(product_conorm, "product_conorm", arity=2, complexity=1), # ADDED
+    Token(product_norm, "product_norm", arity=2, complexity=1), # ADDED
+
+    Token(lukasiewicz_s_implication, "lukasiewicz_s_implication", arity=2, complexity=2), #ADDED, complexity can be tweaked
+    Token(lukasiewicz_r_implication, "lukasiewicz_r_implication", arity=2, complexity=2), #ADDED, complexity can be tweaked  
+    Token(lukasiewicz_conorm, "lukasiewicz_conorm", arity=2, complexity=1), #ADDED, complexity can be tweaked
+    Token(lukasiewicz_norm, "lukasiewicz_norm", arity=2, complexity=1), # ADDED
+
+    Token(godel_s_implication, "godel_s_implication", arity=2, complexity=2), #ADDED, complexity can be tweaked
+    Token(godel_r_implication, "godel_r_implication", arity=2, complexity=2), #ADDED, complexity can be tweaked
+    Token(godel_conorm, "godel_conorm", arity=2, complexity=1), # ADDED
+    Token(godel_norm, "godel_norm", arity=2, complexity=1), # ADDED
+
     Token(fuzzy_and, "fuzzy_and", arity=2, complexity=1), # ADDED
     Token(fuzzy_or, "fuzzy_or", arity=2, complexity=1), # ADDED
-    Token(fuzzy_not, "fuzzy_not", arity=1, complexity=1), # ADDED
-    Token(probabilistic_sum, "probabilistic_sum", arity=2, complexity=3), # ADDED
-    Token(lukasiewicz_conorm, "lukasiewicz_conorm", arity=2, complexity=3) # ADDED
+    Token(fuzzy_not, "fuzzy_not", arity=1, complexity=1) # ADDED
 ]
 
 

@@ -1,4 +1,0 @@
-equation: product_reichenbach(x9, fuzzy_not(fuzzy_or(fuzzy_or(x14, x12), probabilistic_sum(probabilistic_sum(x3*fuzzy_and(x3, x3), fuzzy_not(x11)), x7))))
-threshold: 0.7
-dataset: 200k_test
-Evaluated equation: product_reichenbach(meanDest7, fuzzy_not(fuzzy_or(fuzzy_or(log_maxDest3, log_amount), probabilistic_sum(probabilistic_sum(oldbalanceDest*fuzzy_and(oldbalanceDest, oldbalanceDest), fuzzy_not(maxDest7)), is_workday))))

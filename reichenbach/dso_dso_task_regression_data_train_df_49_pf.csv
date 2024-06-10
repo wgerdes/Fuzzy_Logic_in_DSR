@@ -1,9 +1,0 @@
-complexity,r,count_on_policy,count_off_policy,expression,traversal,nmse_test,nmse_test_noiseless,success,f1_score,f1_score_noiseless
-2,0.0,1,0,fuzzy_not(x2),"fuzzy_not,x2",1.001295963060762,1.001295963060762,False,0.0,0.0
-3,0.014896013719127759,1,0,"product_reichenbach(x3, x21)","product_reichenbach,x3,x21",64.75599819384021,64.75599819384021,False,0.014896013719127759,0.014896013719127759
-4,0.017801857585139316,1,0,"fuzzy_and(fuzzy_not(x7), x15)","fuzzy_and,fuzzy_not,x7,x15",19.634684414721303,19.634684414721303,False,0.017801857585139316,0.017801857585139316
-6,0.06910365548322485,1,0,"fuzzy_and(fuzzy_not(x20), x1*x18)","fuzzy_and,fuzzy_not,x20,mul,x18,x1",6.163606607052836,6.163606607052836,False,0.06910365548322485,0.06910365548322485
-7,0.10041232112539412,1,0,"x13*fuzzy_and(fuzzy_not(fuzzy_not(x1)), x18)","mul,x13,fuzzy_and,fuzzy_not,fuzzy_not,x1,x18",4.099124422728881,4.099124422728881,False,0.10041232112539412,0.10041232112539412
-8,0.11037527593818984,1,0,"fuzzy_and(x18, x1*fuzzy_not(product_reichenbach(x9, x19)))","fuzzy_and,x18,mul,fuzzy_not,product_reichenbach,x9,x19,x1",3.56311057936854,3.56311057936854,False,0.11037527593818984,0.11037527593818984
-12,0.12248003042982122,1,0,"fuzzy_not(fuzzy_not(fuzzy_not(fuzzy_not(fuzzy_and(fuzzy_not(x3), x21))*fuzzy_not(fuzzy_not(x10)))))","fuzzy_not,fuzzy_not,fuzzy_not,mul,fuzzy_not,fuzzy_not,x10,fuzzy_not,fuzzy_and,fuzzy_not,x3,x21",2.5496576013037284,2.5496576013037284,False,0.12248003042982122,0.12248003042982122
-14,0.12893553223388304,1,0,"fuzzy_not(x9*probabilistic_sum(x3, x2))*fuzzy_not(fuzzy_not(fuzzy_not(fuzzy_not(fuzzy_not(fuzzy_not(x21))))))","mul,fuzzy_not,fuzzy_not,fuzzy_not,fuzzy_not,fuzzy_not,fuzzy_not,x21,fuzzy_not,mul,probabilistic_sum,x3,x2,x9",1.2842228577004475,1.2842228577004475,False,0.12893553223388304,0.12893553223388304

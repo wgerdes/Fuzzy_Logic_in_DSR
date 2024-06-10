@@ -45,8 +45,8 @@ python -m dso.run dso/config/config_logic.json --runs=8 --n_cores_task=8 --seed=
 Running on Snellius
 
 Copy files from pc line by line (first copy them locally)
-scp data/2m_train.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
-scp data/2m_test.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+scp data/1m_train.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+scp data/1m_test.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
 
 scp main/functions.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
 scp main/program.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
@@ -54,16 +54,15 @@ scp main/regression.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/d
 scp main/config_logic.json wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/config/
 
 Login
-ssh -X wgerdes@snellius.surf.nl
-passw = key
+ssh -Y wgerdes@snellius.surf.nl
 
 Run:
 source $HOME/venv3/bin/activate
 cd $HOME/deep-symbolic-optimization/dso
-srun -u --time=50:00:00 --mem-per-cpu=4096 python -m dso.run dso/config/config_logic.json --runs=20 --n_cores_task=20 --seed=42
+nohup srun --time=24:00:00 --mem-per-cpu=4096 python -m dso.run dso/config/config_logic.json --runs=16 --n_cores_task=16 & disown
 
-Copy log from server:
-scp -r wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/log/dso_task_regression_data_train_df_2024-06-03-212707 /Users/wout/Documents/UvA/Thesis/
+Copy log from server:   
+scp -r wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/log/ /Users/wout/Documents/UvA/Thesis/
 
 Evaluate expression: (alter test set in expression script)
-python main/evaluate_expression.py --equation "fuzzy_not(fuzzy_not(x1*fuzzy_and(fuzzy_and(x10, product_reichenbach(fuzzy_or(probabilistic_sum(x5, fuzzy_not(fuzzy_and(fuzzy_not(fuzzy_and(fuzzy_not(x9), x3)), x1))), x14), x14)), x13)))"
+python main/evaluate_expression.py --equation "x4*fuzzy_not(x11*x3*probabilistic_sum(x16*product_reichenbach(product_reichenbach(x16, x1), x1), fuzzy_or(fuzzy_not(x1**2), x1*x2)))"

@@ -21,6 +21,7 @@ def equation(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13,
     func = func.replace("fuzzy_or", "fuzzy_or")
     func = func.replace("fuzzy_not", "fuzzy_not")
     func = func.replace("probabilistic_sum", "probabilistic_sum")
+    func = func.replace("lukasiewicz_tnorm", "lukasiewicz_tnorm")
     func = func.replace("lukasiewicz_conorm", "lukasiewicz_conorm")
     func = eval(func)
 
@@ -61,10 +62,10 @@ def main(args):
 
     # Create a dictionary mapping variable names to column names
     var_mapping = {
-        'x1': 'oldbalanceOrig', 'x2': 'newbalanceOrig', 'x3': 'oldbalanceDest', 'x4': 'newbalanceDest', 'x5': 'externalDest',
-        'x6': 'externalOrig', 'x7': 'is_workday', 'x8': 'meanDest3', 'x9': 'meanDest7', 'x10': 'maxDest3',
-        'x11': 'maxDest7', 'x12': 'type_CASH_IN', 'x13': 'type_CASH_OUT', 'x14': 'type_DEBIT', 'x15': 'type_PAYMENT',
-        'x16': 'type_TRANSFER'
+        'x1': 'oldbalanceOrig', 'x2': 'newbalanceOrig', 'x3': 'oldbalanceDest', 'x4': 'newbalanceDest', 
+        'x5': 'is_workday', 'x6': 'meanDest3', 'x7': 'meanDest7', 'x8': 'maxDest3',
+        'x9': 'maxDest7', 'x10': 'type_CASH_IN', 'x11': 'type_CASH_OUT', 'x12': 'type_DEBIT', 'x13': 'type_PAYMENT',
+        'x14': 'type_TRANSFER'
     }
 
     # Replace variable names with column names in the equation
@@ -75,12 +76,11 @@ def main(args):
     # make predictions based on given equation
     df = pd.read_csv(dataset, header=None, names=['x1', 'x2', 'x3', 'x4', 'x5', 'x6',
                                                   'x7', 'x8', 'x9', 'x10', 'x11', 'x12', 
-                                                  'x13', 'x14', 'x15', 'x16', 'y'])
+                                                  'x13', 'x14', 'y'])
 
     df['eq']=df.apply(lambda x: equation(x['x1'], x['x2'], x['x3'], x['x4'], x['x5'], 
                                          x['x6'], x['x7'], x['x8'], x['x9'], x['x10'], 
-                                         x['x11'], x['x12'],x['x13'], x['x14'], x['x15'], 
-                                         x['x16'], func=func), axis=1)
+                                         x['x11'], x['x12'],x['x13'], x['x14'], func=func), axis=1)
     df['sigmoid']=df.apply(lambda x: 1 / (1 + np.exp(-x['eq'])), axis=1)
     df.loc[df['sigmoid'] <= threshold, 'pred'] = 0
     df.loc[df['sigmoid'] > threshold, 'pred'] = 1
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     parser.add_argument('--threshold', type=float, default=0.7,
                         help='sigmoid threshold between 0.0 and 1.0')
 
-    parser.add_argument('--dataset', type=str, default="200k_test",
+    parser.add_argument('--dataset', type=str, default="1m_test",
                         help='"train_df", "val_df", or "test_df"')
 
     args = parser.parse_args()
