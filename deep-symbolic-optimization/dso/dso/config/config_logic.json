@@ -7,7 +7,7 @@
       "classification" : true,
       
       // threshold of sigmoid
-      "sigmoid_threshold" : 0.7,
+      "sigmoid_threshold" : 0.55,
 
       // This can either be (1) the name of the benchmark dataset (see
       // benchmarks.csv for a list of supported benchmarks) or (2) a path to a
@@ -18,7 +18,7 @@
       // supported functions. Note "const" will add placeholder constants that
       // will be optimized within the training loop. This will considerably
       // increase runtime.
-      "function_set": ["godel_s_implication", "godel_r_implication", "godel_conorm", "godel_norm", "fuzzy_not"],
+      "function_set": ["product_s_implication", "product_conorm", "product_norm", "fuzzy_not"],
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
@@ -54,24 +54,24 @@
    // Only the key training hyperparameters are listed here. See
    // config_common.json for the full list.
    "training" : {
-      "n_samples" : 200000, // TODO tweakable
-      "batch_size" : 500, // TODO tweakable
+      "n_samples" : 20000,
+      "batch_size" : 500, 
 
       // To use the risk-seeking policy gradient, set epsilon < 1.0 and
       // baseline="R_e"
-      "epsilon" : 0.05, // TODO tweakable
-      "baseline" : "R_e",
+      "epsilon" : 0.02,
+      "baseline" : "R_e"
    },
 
    // Hyperparameters related to the discrete distribution model over objects.
    "policy_optimizer" : {
 
       // Optimizer hyperparameters.
-      "learning_rate" : 0.0025, //TODO tweakable
+      "learning_rate" : 0.001,
 
       // Entropy regularizer hyperparameters.
-      "entropy_weight" : 0.1, //TODO tweakable
-      "entropy_gamma" : 0.7, //TODO tweakable
+      "entropy_weight" : 0.03, 
+      "entropy_gamma" : 0.7, 
 
       // Type of policy optimizer
       // "pg" is equivalent to "dso.policy_optimizer.pg_policy_optimizer:PGPolicyOptimizer"
@@ -91,18 +91,18 @@
       "length": {
          "min_": 2,
          "max_": 64,
-         "on": false
+         "on": true
       },
       // Generic constraint that [targets] cannot be the [relationship] of
       // [effectors]. See prior.py for supported relationships.
       "relational" : {
-         "targets" : [],   
-         "effectors" : [],
+         "targets" : ["product_s_implication"],   
+         "effectors" : ["product_conorm", "product_norm", "fuzzy_not"],
          "relationship" : "child",
-         "on" : false
+         "on" : true
       },
       "repeat" : {
-         "tokens" : "",
+         "tokens" : "product_s_implication",
          "min_" : null,
          "max_" : 1,
          "on" : false

@@ -23,7 +23,7 @@ class RegressionTask(HierarchicalTask):
                  normalize_variance=False, protected=False,
                  decision_tree_threshold_set=None,
                  poly_optimizer_params=None,
-                 classification=False, sigmoid_threshold=0.5):
+                 classification=False, sigmoid_threshold=0.7):
         """
         Parameters
         ----------

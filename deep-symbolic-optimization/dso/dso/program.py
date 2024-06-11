@@ -54,7 +54,7 @@ def _finish_tokens(tokens):
     return tokens
 
 
-def from_str_tokens(str_tokens, skip_cache=True):
+def from_str_tokens(str_tokens, skip_cache=False):
     """
     Memoized function to generate a Program from a list of str and/or float.
     See from_tokens() for details.
@@ -105,7 +105,7 @@ def from_str_tokens(str_tokens, skip_cache=True):
     return p
 
 
-def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True):
+def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = True):
 
     """
     Memoized function to generate a Program from a list of tokens.
@@ -139,21 +139,23 @@ def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True):
     '''
         Truncate expressions that complete early; extend ones that don't complete
     '''
-  
+    # Add fuzzy logic implication as token
+    if add_logic:
+        if 14 not in tokens:
+            tokens[0] = 14
+        else:
+            index_14 = np.where(tokens == 14)[0][0]
+            tokens[0], tokens[index_14] = tokens[index_14], tokens[0]
+
     if finish_tokens:
         tokens = _finish_tokens(tokens)
     
-    # # # Add product_reichenbach or lukasciewicz token to the tokens to ensure appearal in
-    # if add_logic:
-    #     if 21 not in tokens:
-    #         tokens[-1] = 21
-
     # For stochastic Tasks, there is no cache; always generate a new Program.
     # For deterministic Programs, if the Program is in the cache, return it;
     # otherwise, create a new one and add it to the cache.
     if skip_cache or Program.task.stochastic:
         p = Program(tokens, on_policy=on_policy)
-
+    
     else:
         key = tokens.tostring()
         try:

@@ -1,6 +1,24 @@
+TODO:
+Final config settings
+Complexity settings
+
+Product
+Lukasiewics
+Godel
+Combined
+
+F1 vs F2
+Which subset?
+
+Constraints?
+Root node (which subset)
+Implications only have t-norm or conorm?
+
+Compare against DSC on transformed dataset?
+
 Data preparation
     Create working hours feature --DONE
-    Test out possible log transformable columns --DONE --> REMOVED AGAIN
+    Test out possible log transformable columns --DONE --> 
     Add noise --DONE
     Fuzzyfying columns --DONE
     Fuzzy clustering --TODO
@@ -25,9 +43,7 @@ source venv3/bin/activate # Activate the virtual environment
 pip install --upgrade setuptools pip
 pip install -e ./dso # Install DSO package and core dependencies
 
-
 Running locally
-
 Copy training data:
 cp data/200k_train.csv deep-symbolic-optimization/dso/dso/task/regression/data
 cp data/200k_test.csv deep-symbolic-optimization/dso/dso/task/regression/data
@@ -40,13 +56,13 @@ cp main/regression.py deep-symbolic-optimization/dso/dso/task/regression/
 cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 
 cd deep-symbolic-optimization/dso
-python -m dso.run dso/config/config_logic.json --runs=8 --n_cores_task=8 --seed=42
+python -m dso.run dso/config/config_logic.json --runs=1 --n_cores_task=1 --seed=42
 
 Running on Snellius
 
 Copy files from pc line by line (first copy them locally)
-scp data/1m_train.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
-scp data/1m_test.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+scp data/2m_train.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
+scp data/2m_test.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
 
 scp main/functions.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
 scp main/program.py wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso
@@ -59,10 +75,10 @@ ssh -Y wgerdes@snellius.surf.nl
 Run:
 source $HOME/venv3/bin/activate
 cd $HOME/deep-symbolic-optimization/dso
-nohup srun --time=24:00:00 --mem-per-cpu=4096 python -m dso.run dso/config/config_logic.json --runs=16 --n_cores_task=16 & disown
+nohup srun --time=72:00:00 --mem-per-cpu=4096 python -m dso.run dso/config/config_logic.json --runs=16 --n_cores_task=16 & disown
 
 Copy log from server:   
 scp -r wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/log/ /Users/wout/Documents/UvA/Thesis/
 
 Evaluate expression: (alter test set in expression script)
-python main/evaluate_expression.py --equation "x4*fuzzy_not(x11*x3*probabilistic_sum(x16*product_reichenbach(product_reichenbach(x16, x1), x1), fuzzy_or(fuzzy_not(x1**2), x1*x2)))"
+python main/evaluate_expression.py --equation "lukasiewicz_norm(fuzzy_not(godel_conorm(godel_conorm(x6, product_norm(x3, x2)), x16)), x4)"
