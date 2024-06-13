@@ -167,7 +167,8 @@ def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, ad
         except KeyError:
             p = Program(tokens, on_policy=on_policy)
             Program.cache[key] = p
-
+    print(p)
+    print(tokens)
     return p
 
 

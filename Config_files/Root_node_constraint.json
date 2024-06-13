@@ -1,0 +1,134 @@
+{
+   "task" : {
+      // Deep Symbolic Regression
+      "task_type" : "regression",
+   
+      // Set classification to True
+      "classification" : true,
+      
+      // threshold of sigmoid
+      "sigmoid_threshold" : 0.55,
+
+      // This can either be (1) the name of the benchmark dataset (see
+      // benchmarks.csv for a list of supported benchmarks) or (2) a path to a
+      // CSV file containing the data.
+      "dataset" : "dso/task/regression/data/2m_train.csv",
+
+      // To customize a function set, edit this! See functions.py for a list of
+      // supported functions. Note "const" will add placeholder constants that
+      // will be optimized within the training loop. This will considerably
+      // increase runtime.
+      "function_set": ["lukasiewicz_s_implication", "lukasiewicz_conorm", "lukasiewicz_norm", "fuzzy_not"],
+
+      // Metric to be used for the reward function. See regression.py for
+      // supported metrics.
+      "metric" : "f1_score",
+      "metric_params" : [1.0],
+
+      // Optional alternate metric to be used at evaluation time.
+      "extra_metric_test" : "f1_score",
+      "extra_metric_test_params" : [1.0],
+
+      // NRMSE threshold for early stopping. This is useful for noiseless
+      // benchmark problems when DSO discovers the true solution.
+      "threshold" : 1e-12,
+
+      // With protected=false, floating-point errors (e.g. log of negative
+      // number) will simply returns a minimal reward. With protected=true,
+      // "protected" functions will prevent floating-point errors, but may
+      // introduce discontinuities in the learned functions.      
+      "protected" : false,
+
+      // You can add artificial reward noise directly to the reward function.
+      // Note this does NOT add noise to the dataset.
+      "reward_noise" : 0.0,
+      "reward_noise_type" : "r",
+      "normalize_variance" : false,
+
+      // Set of thresholds (shared by all input variables) for building
+      // decision trees. Note that no StateChecker will be added to Library
+      // if decision_tree_threshold_set is an empty list or null.
+      "decision_tree_threshold_set" : []
+      },
+
+   // Only the key training hyperparameters are listed here. See
+   // config_common.json for the full list.
+   "training" : {
+      "n_samples" : 200000, // TODO tweakable
+      "batch_size" : 500, // TODO tweakable
+
+      // To use the risk-seeking policy gradient, set epsilon < 1.0 and
+      // baseline="R_e"
+      "epsilon" : 0.05, // TODO tweakable
+      "baseline" : "R_e"
+   },
+
+   // Hyperparameters related to the discrete distribution model over objects.
+   "policy_optimizer" : {
+
+      // Optimizer hyperparameters.
+      "learning_rate" : 0.001, //TODO tweakables
+
+      // Entropy regularizer hyperparameters.
+      "entropy_weight" : 0.1, //TODO tweakable
+      "entropy_gamma" : 0.7, //TODO tweakable
+
+      // Type of policy optimizer
+      // "pg" is equivalent to "dso.policy_optimizer.pg_policy_optimizer:PGPolicyOptimizer"
+      "policy_optimizer_type" : "pqt",
+      "pqt_k" : 10,
+      "pqt_batch_size" : 1,
+      "pqt_weight" : 200.0,
+      "pqt_use_pg" : false
+
+   },
+
+   // Hyperparameters related to including in situ priors and constraints. Each
+   // prior must explicitly be turned "on" or it will not be used. See
+   // config_common.json for descriptions of each prior.
+   // TODO tweakable
+   "prior": {
+      "length": {
+         "min_": 2,
+         "max_": 64,
+         "on": false
+      },
+      // Generic constraint that [targets] cannot be the [relationship] of
+      // [effectors]. See prior.py for supported relationships.
+      "relational" : {
+         "targets" : ["lukasiewicz_s_implication"],   
+         "effectors" : ["lukasiewicz_conorm", "lukasiewicz_norm", "fuzzy_not"],
+         "relationship" : "child",
+         "on" : true
+      },
+      "repeat" : {
+         "tokens" : "lukasiewicz_s_implication",
+         "min_" : null,
+         "max_" : 1,
+         "on" : false
+      },
+      "inverse" : {
+         "on" : true
+      },
+      "trig" : {
+         "on" : true
+      },
+      "const" : {
+         "on" : true
+      },
+      "no_inputs" : {
+         "on" : true
+      },
+      "uniform_arity" : {
+         "on" : true
+      },
+      "soft_length" : {
+         "loc" : 10,
+         "scale" : 5,
+         "on" : true
+      },
+      "domain_range" : {
+         "on" : false
+      }
+   }
+}

@@ -1,39 +1,3 @@
-TODO:
-Final config settings
-Complexity settings
-
-Product
-Lukasiewics
-Godel
-Combined
-
-F1 vs F2
-Which subset?
-
-Constraints?
-Root node (which subset)
-Implications only have t-norm or conorm?
-
-Compare against DSC on transformed dataset?
-
-Data preparation
-    Create working hours feature --DONE
-    Test out possible log transformable columns --DONE --> 
-    Add noise --DONE
-    Fuzzyfying columns --DONE
-    Fuzzy clustering --TODO
-
-DSR
-    Incorporate Product (Reichenbach) and Lukasiewics into DSR framework (functions.py) -- DONE
-    Added to functions.py as protected_product_reichenbach and product_reichenbach  -- DONE
-    Both are set as UNARY operators with a complexity of 1 similar to multiplication -- DONE
-    These new operators can now be chosen in the config file by incorporating them into the function set -- DONE
-    Reichenbach can not be a child because it should be the root node --DONE
-    Reichenbach should always be included in the traversal / tokens --DONE
-
-Data evaluate_expression  
-    Create script to gather performance from formula and create understandable formula --DONE
-    
 Setup:
 Install Python 3.6
 
@@ -60,7 +24,7 @@ python -m dso.run dso/config/config_logic.json --runs=1 --n_cores_task=1 --seed=
 
 Running on Snellius
 
-Copy files from pc line by line (first copy them locally)
+Copy files from pc to server
 scp data/2m_train.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
 scp data/2m_test.csv wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/dso/task/regression/data
 
@@ -81,4 +45,4 @@ Copy log from server:
 scp -r wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/log/ /Users/wout/Documents/UvA/Thesis/
 
 Evaluate expression: (alter test set in expression script)
-python main/evaluate_expression.py --equation "lukasiewicz_norm(fuzzy_not(godel_conorm(godel_conorm(x6, product_norm(x3, x2)), x16)), x4)"
+python main/evaluate_expression.py --equation "lukasiewicz_norm(x4, lukasiewicz_norm(lukasiewicz_conorm(x4, x5), lukasiewicz_norm(lukasiewicz_conorm(lukasiewicz_conorm(x4, fuzzy_not(x10)), x12), fuzzy_not(lukasiewicz_conorm(x12, lukasiewicz_conorm(x3, x16))))))"

@@ -3,26 +3,33 @@ import numpy as np
 from sklearn.metrics import log_loss, accuracy_score, precision_score, recall_score, f1_score
 import argparse
 import time
-from functions import product_reichenbach, lukasiewicz, fuzzy_and, fuzzy_not, fuzzy_or, probabilistic_sum, lukasiewicz_conorm
+from functions import *
 import re
 
 
 def equation(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, 
-             x14, x15,x16, func):
+             x14, x15, func):
     
     func = func.replace("sqrt", "np.sqrt")
     func = func.replace("exp", "np.exp")
     func = func.replace("log", "np.log")
     func = func.replace("sin", "np.sin")
     func = func.replace("cos", "np.cos")
-    func = func.replace("product_reichenbach", "product_reichenbach")
-    func = func.replace("lukasiewicz", "lukasiewicz")
+    func = func.replace("product_s_implication", "product_s_implication")
+    func = func.replace("product_r_implication", "product_r_implication")
+    func = func.replace("product_norm", "product_norm")
+    func = func.replace("product_conorm", "product_conorm")
+    func = func.replace("lukasiewicz_s_implication", "lukasiewicz_s_implication")
+    func = func.replace("lukasiewicz_r_implication", "lukasiewicz_r_implication")
+    func = func.replace("lukasiewicz_norm", "lukasiewicz_norm")
+    func = func.replace("lukasiewicz_conorm", "lukasiewicz_conorm")
+    func = func.replace("godel_s_implication", "godel_s_implication")
+    func = func.replace("godel_r_implication", "godel_r_implication")
+    func = func.replace("godel_norm", "godel_norm")
+    func = func.replace("godel_conorm", "godel_conorm")
     func = func.replace("fuzzy_and", "fuzzy_and")
     func = func.replace("fuzzy_or", "fuzzy_or")
     func = func.replace("fuzzy_not", "fuzzy_not")
-    func = func.replace("probabilistic_sum", "probabilistic_sum")
-    func = func.replace("lukasiewicz_tnorm", "lukasiewicz_tnorm")
-    func = func.replace("lukasiewicz_conorm", "lukasiewicz_conorm")
     func = eval(func)
 
     return func
@@ -61,11 +68,13 @@ def main(args):
         return equation
 
     # Create a dictionary mapping variable names to column names
+
+    #TODO: fix at the end
     var_mapping = {
         'x1': 'oldbalanceOrig', 'x2': 'newbalanceOrig', 'x3': 'oldbalanceDest', 'x4': 'newbalanceDest', 
-        'x5': 'is_workday', 'x6': 'meanDest3', 'x7': 'meanDest7', 'x8': 'maxDest3',
-        'x9': 'maxDest7', 'x10': 'type_CASH_IN', 'x11': 'type_CASH_OUT', 'x12': 'type_DEBIT', 'x13': 'type_PAYMENT',
-        'x14': 'type_TRANSFER'
+        'x6': 'is_workday', 'x7': 'meanDest3', 'x8': 'meanDest7', 'x9': 'maxDest3',
+        'x10': 'maxDest7', 'x11': 'type_CASH_IN', 'x12': 'type_CASH_OUT', 'x13': 'type_DEBIT', 'x14': 'type_PAYMENT',
+        'x15': 'type_TRANSFER'
     }
 
     # Replace variable names with column names in the equation
@@ -76,11 +85,11 @@ def main(args):
     # make predictions based on given equation
     df = pd.read_csv(dataset, header=None, names=['x1', 'x2', 'x3', 'x4', 'x5', 'x6',
                                                   'x7', 'x8', 'x9', 'x10', 'x11', 'x12', 
-                                                  'x13', 'x14', 'y'])
+                                                  'x13', 'x14', 'x15', 'y'])
 
     df['eq']=df.apply(lambda x: equation(x['x1'], x['x2'], x['x3'], x['x4'], x['x5'], 
                                          x['x6'], x['x7'], x['x8'], x['x9'], x['x10'], 
-                                         x['x11'], x['x12'],x['x13'], x['x14'], func=func), axis=1)
+                                         x['x11'], x['x12'],x['x13'], x['x14'], x['x15'], func=func), axis=1)
     df['sigmoid']=df.apply(lambda x: 1 / (1 + np.exp(-x['eq'])), axis=1)
     df.loc[df['sigmoid'] <= threshold, 'pred'] = 0
     df.loc[df['sigmoid'] > threshold, 'pred'] = 1
@@ -118,10 +127,10 @@ if __name__ == "__main__":
     parser.add_argument('--equation', type=str, default="sqrt(x17 + x20)*(-x14 + x2 + x23)",
                         help='string of equation, e.g. "sqrt(x17 + x20)*(-x14 + x2 + x23)"')
 
-    parser.add_argument('--threshold', type=float, default=0.7,
+    parser.add_argument('--threshold', type=float, default=0.55,
                         help='sigmoid threshold between 0.0 and 1.0')
 
-    parser.add_argument('--dataset', type=str, default="1m_test",
+    parser.add_argument('--dataset', type=str, default="2m_test",
                         help='"train_df", "val_df", or "test_df"')
 
     args = parser.parse_args()

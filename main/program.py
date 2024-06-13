@@ -105,7 +105,7 @@ def from_str_tokens(str_tokens, skip_cache=False):
     return p
 
 
-def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True):
+def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True, add_logic = False):
 
     """
     Memoized function to generate a Program from a list of tokens.
@@ -140,12 +140,12 @@ def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True):
         Truncate expressions that complete early; extend ones that don't complete
     '''
     # Add fuzzy logic implication as token
-    # if add_logic:
-    #     if 14 not in tokens:
-    #         tokens[0] = 14
-    #     else:
-    #         index_14 = np.where(tokens == 14)[0][0]
-    #         tokens[0], tokens[index_14] = tokens[index_14], tokens[0]
+    if add_logic:
+        if 14 not in tokens:
+            tokens[0] = 14
+        else:
+            index_14 = np.where(tokens == 14)[0][0]
+            tokens[0], tokens[index_14] = tokens[index_14], tokens[0]
 
     if finish_tokens:
         tokens = _finish_tokens(tokens)
@@ -167,7 +167,8 @@ def from_tokens(tokens, skip_cache=False, on_policy=True, finish_tokens=True):
         except KeyError:
             p = Program(tokens, on_policy=on_policy)
             Program.cache[key] = p
-
+    print(p)
+    print(tokens)
     return p
 
 
