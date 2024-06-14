@@ -1,0 +1,115 @@
+Evaluated expression,complexity,seed,F1 score,accuracy,precision,recall
+type_TRANSFER,1,0,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"lukasiewicz_norm(meanDest7, fuzzy_not(oldbalanceDest))",4,0,0.018571157854841765,0.9136833333333333,0.00942488940180804,0.6282051282051282
+"fuzzy_not(product_conorm(fuzzy_not(type_TRANSFER), oldbalanceDest))",5,0,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"fuzzy_not(lukasiewicz_conorm(meanDest7, lukasiewicz_conorm(oldbalanceDest, fuzzy_not(type_TRANSFER))))",7,0,0.11299435028248586,0.9981683333333333,0.15250544662309368,0.08974358974358974
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(maxDest7, lukasiewicz_conorm(oldbalanceDest, fuzzy_not(type_TRANSFER))))))",9,0,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"product_norm(fuzzy_not(newbalanceOrig), lukasiewicz_norm(type_TRANSFER, fuzzy_not(lukasiewicz_conorm(maxDest3, fuzzy_not(fuzzy_not(oldbalanceDest))))))",11,0,0.14808362369337977,0.99837,0.23097826086956522,0.10897435897435898
+"fuzzy_not(fuzzy_not(fuzzy_not(product_conorm(product_conorm(meanDest3, fuzzy_not(fuzzy_not(newbalanceOrig))), fuzzy_not(godel_norm(fuzzy_not(oldbalanceDest), type_TRANSFER))))))",14,0,0.14937759336099585,0.9976083333333333,0.13891951488423374,0.16153846153846155
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_s_implication(type_TRANSFER, fuzzy_not(fuzzy_not(product_conorm(oldbalanceDest, product_conorm(godel_conorm(maxDest3, newbalanceOrig), oldbalanceDest))))))))",15,0,0.15455950540958266,0.997265,0.12919896640826872,0.19230769230769232
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_s_implication(lukasiewicz_norm(fuzzy_not(product_s_implication(newbalanceDest, oldbalanceDest)), lukasiewicz_s_implication(meanDest7, fuzzy_not(oldbalanceDest))), product_conorm(oldbalanceDest, oldbalanceDest)))))",19,0,0.15293420272673386,0.9976183333333334,0.1422271223814774,0.16538461538461538
+"fuzzy_not(lukasiewicz_conorm(fuzzy_not(lukasiewicz_norm(newbalanceDest, lukasiewicz_s_implication(product_conorm(lukasiewicz_s_implication(product_conorm(oldbalanceDest, lukasiewicz_conorm(fuzzy_not(fuzzy_not(oldbalanceDest)), oldbalanceDest)), oldbalanceDest), oldbalanceDest), oldbalanceDest))), oldbalanceDest))",21,0,0.16298168035375868,0.9977916666666666,0.16064757160647572,0.16538461538461538
+type_TRANSFER,1,1,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"lukasiewicz_norm(type_TRANSFER, fuzzy_not(maxDest3))",4,1,0.034940600978336823,0.98619,0.01921598770176787,0.19230769230769232
+"fuzzy_not(product_conorm(oldbalanceDest, fuzzy_not(type_TRANSFER)))",5,1,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"lukasiewicz_norm(type_TRANSFER, fuzzy_not(lukasiewicz_conorm(newbalanceDest, newbalanceOrig)))",6,1,0.10375494071146243,0.9969766666666666,0.08440514469453377,0.1346153846153846
+"fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(fuzzy_not(type_TRANSFER), oldbalanceDest), newbalanceOrig))",7,1,0.11604629340006255,0.99058,0.06608478802992519,0.4756410256410256
+"fuzzy_not(lukasiewicz_s_implication(fuzzy_not(oldbalanceDest), product_conorm(maxDest7, fuzzy_not(type_TRANSFER))))",9,1,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(newbalanceOrig, oldbalanceDest), lukasiewicz_s_implication(newbalanceDest, newbalanceOrig)))))",11,1,0.14303959131545338,0.9977633333333333,0.14249363867684478,0.14358974358974358
+"fuzzy_not(lukasiewicz_s_implication(fuzzy_not(type_CASH_IN), product_conorm(fuzzy_not(type_TRANSFER), product_conorm(lukasiewicz_conorm(maxDest7, oldbalanceDest), newbalanceOrig))))",13,1,0.15298804780876493,0.9982283333333334,0.20210526315789473,0.12307692307692308
+"fuzzy_not(godel_conorm(fuzzy_not(fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(lukasiewicz_s_implication(lukasiewicz_s_implication(maxDest7, oldbalanceDest), godel_s_implication(type_TRANSFER, fuzzy_not(type_TRANSFER))), oldbalanceDest), newbalanceOrig))), oldbalanceDest))",20,1,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,2,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"godel_norm(fuzzy_not(newbalanceDest), type_TRANSFER)",4,2,0.04566768603465851,0.9843966666666667,0.024806201550387597,0.28717948717948716
+"fuzzy_not(product_conorm(fuzzy_not(type_TRANSFER), oldbalanceDest))",5,2,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"product_norm(fuzzy_not(maxDest3), godel_norm(fuzzy_not(oldbalanceDest), type_TRANSFER))",7,2,0.09746588693957114,0.99537,0.06527415143603134,0.19230769230769232
+"fuzzy_not(godel_conorm(product_s_implication(type_TRANSFER, lukasiewicz_conorm(oldbalanceDest, newbalanceDest)), type_DEBIT))",9,2,0.12013729977116705,0.9974366666666666,0.10847107438016529,0.1346153846153846
+"fuzzy_not(godel_s_implication(type_TRANSFER, lukasiewicz_s_implication(fuzzy_not(oldbalanceDest), fuzzy_not(fuzzy_not(maxDest3)))))",11,2,0.13168086754453912,0.9981316666666666,0.16634050880626222,0.10897435897435898
+"product_norm(fuzzy_not(fuzzy_not(type_TRANSFER)), lukasiewicz_norm(fuzzy_not(oldbalanceDest), fuzzy_not(lukasiewicz_s_implication(type_TRANSFER, maxDest7))))",12,2,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"godel_norm(fuzzy_not(newbalanceOrig), fuzzy_not(lukasiewicz_conorm(maxDest7, product_s_implication(fuzzy_not(godel_conorm(product_s_implication(fuzzy_not(fuzzy_not(godel_conorm(maxDest7, type_TRANSFER))), fuzzy_not(type_TRANSFER)), oldbalanceDest)), oldbalanceDest))))",21,2,0.15000000000000002,0.9981866666666667,0.192,0.12307692307692308
+type_TRANSFER,1,3,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"godel_norm(type_TRANSFER, fuzzy_not(oldbalanceOrig))",4,3,0.021282841626302656,0.9777733333333334,0.011287560330063832,0.1858974358974359
+"fuzzy_not(godel_s_implication(type_TRANSFER, maxDest3))",5,3,0.034940600978336823,0.98619,0.01921598770176787,0.19230769230769232
+"lukasiewicz_norm(fuzzy_not(lukasiewicz_conorm(oldbalanceDest, oldbalanceDest)), type_TRANSFER)",6,3,0.11418481459682167,0.9899666666666667,0.06449468085106383,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(product_conorm(maxDest7, fuzzy_not(type_TRANSFER))), fuzzy_not(oldbalanceDest))",8,3,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(product_conorm(newbalanceOrig, fuzzy_not(fuzzy_not(lukasiewicz_conorm(fuzzy_not(fuzzy_not(oldbalanceDest)), godel_conorm(lukasiewicz_norm(fuzzy_not(oldbalanceDest), fuzzy_not(type_TRANSFER)), maxDest7))))))",16,3,0.15298804780876493,0.9982283333333334,0.20210526315789473,0.12307692307692308
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(fuzzy_not(godel_norm(fuzzy_not(oldbalanceDest), fuzzy_not(lukasiewicz_s_implication(fuzzy_not(fuzzy_not(fuzzy_not(fuzzy_not(type_TRANSFER)))), maxDest7)))), newbalanceOrig))))",18,3,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,4,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(meanDest7), type_TRANSFER)",4,4,0.027769012306721366,0.984595,0.015125472671020969,0.16923076923076924
+"fuzzy_not(lukasiewicz_conorm(oldbalanceDest, fuzzy_not(type_TRANSFER)))",5,4,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"fuzzy_not(product_conorm(fuzzy_not(type_TRANSFER), lukasiewicz_conorm(oldbalanceOrig, oldbalanceDest)))",7,4,0.12103321033210332,0.998015,0.1426086956521739,0.10512820512820513
+"fuzzy_not(lukasiewicz_conorm(maxDest7, fuzzy_not(fuzzy_not(product_conorm(fuzzy_not(type_TRANSFER), oldbalanceDest)))))",9,4,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(godel_s_implication(type_TRANSFER, godel_conorm(oldbalanceDest, maxDest7)), newbalanceOrig))))",11,4,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,5,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(oldbalanceDest), type_TRANSFER)",4,5,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"product_norm(type_TRANSFER, fuzzy_not(lukasiewicz_conorm(oldbalanceDest, fuzzy_not(maxDest3))))",7,5,0.059197030379994145,0.9839483333333333,0.032039758908744845,0.38846153846153847
+"godel_norm(fuzzy_not(fuzzy_not(type_TRANSFER)), fuzzy_not(lukasiewicz_conorm(oldbalanceDest, maxDest7)))",8,5,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(product_conorm(newbalanceOrig, fuzzy_not(fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(oldbalanceDest, maxDest7), fuzzy_not(type_TRANSFER))))))",11,5,0.15298804780876493,0.9982283333333334,0.20210526315789473,0.12307692307692308
+"fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(fuzzy_not(lukasiewicz_norm(product_norm(lukasiewicz_conorm(fuzzy_not(maxDest3), newbalanceDest), type_TRANSFER), fuzzy_not(oldbalanceDest))), oldbalanceDest), oldbalanceDest))",15,5,0.17678708685626443,0.99643,0.12623490669593854,0.2948717948717949
+type_TRANSFER,1,6,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"godel_norm(type_TRANSFER, fuzzy_not(oldbalanceDest))",4,6,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"product_norm(type_TRANSFER, product_norm(fuzzy_not(oldbalanceDest), meanDest3))",6,6,0.05194980434489273,0.97658,0.027417746759720838,0.4935897435897436
+"fuzzy_not(lukasiewicz_conorm(product_conorm(fuzzy_not(type_TRANSFER), maxDest7), oldbalanceDest))",7,6,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(lukasiewicz_conorm(newbalanceOrig, product_s_implication(godel_norm(fuzzy_not(maxDest7), product_conorm(type_TRANSFER, oldbalanceDest)), oldbalanceDest)))",12,6,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,7,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(oldbalanceDest), type_TRANSFER)",4,7,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"product_norm(lukasiewicz_norm(fuzzy_not(oldbalanceDest), fuzzy_not(maxDest7)), type_TRANSFER)",7,7,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(fuzzy_not(newbalanceDest), fuzzy_not(fuzzy_not(oldbalanceDest))), lukasiewicz_conorm(oldbalanceDest, oldbalanceDest)))",11,7,0.16298168035375868,0.9977916666666666,0.16064757160647572,0.16538461538461538
+type_TRANSFER,1,8,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"product_norm(type_TRANSFER, fuzzy_not(newbalanceDest))",4,8,0.04566768603465851,0.9843966666666667,0.024806201550387597,0.28717948717948716
+"lukasiewicz_norm(fuzzy_not(oldbalanceDest), fuzzy_not(fuzzy_not(type_TRANSFER)))",6,8,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"fuzzy_not(lukasiewicz_conorm(product_conorm(maxDest3, fuzzy_not(type_TRANSFER)), oldbalanceDest))",7,8,0.13168086754453912,0.9981316666666666,0.16634050880626222,0.10897435897435898
+"fuzzy_not(lukasiewicz_conorm(lukasiewicz_conorm(fuzzy_not(newbalanceDest), oldbalanceDest), lukasiewicz_conorm(oldbalanceDest, oldbalanceDest)))",9,8,0.16298168035375868,0.9977916666666666,0.16064757160647572,0.16538461538461538
+type_TRANSFER,1,9,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"fuzzy_not(lukasiewicz_conorm(maxDest7, fuzzy_not(type_TRANSFER)))",5,9,0.036790780141843976,0.9855133333333334,0.020135856380397867,0.2128205128205128
+"product_norm(fuzzy_not(newbalanceDest), godel_conorm(type_TRANSFER, type_TRANSFER))",6,9,0.04566768603465851,0.9843966666666667,0.024806201550387597,0.28717948717948716
+"fuzzy_not(godel_s_implication(fuzzy_not(fuzzy_not(type_TRANSFER)), oldbalanceDest))",7,9,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"fuzzy_not(lukasiewicz_conorm(maxDest7, fuzzy_not(product_norm(type_TRANSFER, fuzzy_not(oldbalanceDest)))))",8,9,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(product_conorm(newbalanceOrig, lukasiewicz_conorm(oldbalanceDest, lukasiewicz_conorm(fuzzy_not(type_TRANSFER), maxDest7))))",9,9,0.15298804780876493,0.9982283333333334,0.20210526315789473,0.12307692307692308
+"fuzzy_not(product_conorm(fuzzy_not(fuzzy_not(fuzzy_not(type_TRANSFER))), lukasiewicz_s_implication(fuzzy_not(product_s_implication(fuzzy_not(godel_conorm(fuzzy_not(fuzzy_not(oldbalanceDest)), maxDest7)), oldbalanceDest)), newbalanceOrig)))",19,9,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,10,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"godel_norm(type_TRANSFER, fuzzy_not(oldbalanceDest))",4,10,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(product_conorm(oldbalanceDest, is_workday)), fuzzy_not(fuzzy_not(type_TRANSFER)))",8,10,0.0697986577181208,0.99538,0.04727272727272727,0.13333333333333333
+"fuzzy_not(product_conorm(lukasiewicz_conorm(fuzzy_not(type_TRANSFER), newbalanceDest), lukasiewicz_conorm(newbalanceDest, oldbalanceDest)))",9,10,0.12013729977116705,0.9974366666666666,0.10847107438016529,0.1346153846153846
+"fuzzy_not(lukasiewicz_conorm(newbalanceOrig, fuzzy_not(godel_norm(fuzzy_not(product_conorm(oldbalanceDest, maxDest7)), type_TRANSFER))))",10,10,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,11,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"godel_norm(fuzzy_not(maxDest7), type_TRANSFER)",4,11,0.036790780141843976,0.9855133333333334,0.020135856380397867,0.2128205128205128
+"fuzzy_not(fuzzy_not(godel_norm(fuzzy_not(oldbalanceDest), type_TRANSFER)))",6,11,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"fuzzy_not(product_conorm(maxDest7, lukasiewicz_conorm(maxDest3, fuzzy_not(type_TRANSFER))))",7,11,0.07150837988826815,0.995845,0.050393700787401574,0.12307692307692308
+"godel_norm(type_TRANSFER, fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(maxDest7, oldbalanceDest)))))",8,11,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(fuzzy_not(lukasiewicz_norm(fuzzy_not(godel_conorm(newbalanceOrig, oldbalanceDest)), fuzzy_not(lukasiewicz_s_implication(type_TRANSFER, maxDest3)))))",12,11,0.14899211218229622,0.9983816666666666,0.23545706371191136,0.10897435897435898
+"godel_norm(fuzzy_not(godel_conorm(newbalanceOrig, lukasiewicz_conorm(fuzzy_not(fuzzy_not(lukasiewicz_s_implication(godel_norm(fuzzy_not(type_CASH_OUT), fuzzy_not(type_DEBIT)), oldbalanceDest))), maxDest7))), type_TRANSFER)",17,11,0.15000000000000002,0.9981866666666667,0.192,0.12307692307692308
+"fuzzy_not(product_s_implication(lukasiewicz_norm(fuzzy_not(lukasiewicz_conorm(godel_norm(product_norm(type_TRANSFER, product_s_implication(fuzzy_not(lukasiewicz_conorm(oldbalanceDest, maxDest7)), oldbalanceDest)), maxDest7), oldbalanceDest)), type_TRANSFER), newbalanceOrig))",20,11,0.15298804780876493,0.9982283333333334,0.20210526315789473,0.12307692307692308
+type_TRANSFER,1,12,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"product_norm(type_TRANSFER, fuzzy_not(newbalanceDest))",4,12,0.04566768603465851,0.9843966666666667,0.024806201550387597,0.28717948717948716
+"product_norm(type_TRANSFER, godel_conorm(fuzzy_not(oldbalanceDest), type_PAYMENT))",6,12,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"fuzzy_not(lukasiewicz_conorm(oldbalanceDest, godel_conorm(newbalanceDest, fuzzy_not(type_TRANSFER))))",7,12,0.12013729977116705,0.9974366666666666,0.10847107438016529,0.1346153846153846
+"fuzzy_not(lukasiewicz_s_implication(fuzzy_not(maxDest3), lukasiewicz_conorm(oldbalanceDest, fuzzy_not(type_TRANSFER))))",9,12,0.13168086754453912,0.9981316666666666,0.16634050880626222,0.10897435897435898
+"fuzzy_not(lukasiewicz_conorm(oldbalanceDest, fuzzy_not(lukasiewicz_norm(type_TRANSFER, fuzzy_not(fuzzy_not(fuzzy_not(maxDest7)))))))",10,12,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(oldbalanceDest, godel_s_implication(type_TRANSFER, godel_conorm(fuzzy_not(fuzzy_not(product_conorm(type_PAYMENT, newbalanceOrig))), newbalanceDest))))))",15,12,0.13925729442970822,0.9978366666666667,0.14423076923076922,0.1346153846153846
+"fuzzy_not(godel_s_implication(lukasiewicz_norm(fuzzy_not(fuzzy_not(fuzzy_not(lukasiewicz_conorm(newbalanceDest, godel_conorm(oldbalanceDest, fuzzy_not(fuzzy_not(newbalanceOrig))))))), type_TRANSFER), maxDest7))",16,12,0.14583333333333334,0.99795,0.1590909090909091,0.1346153846153846
+"fuzzy_not(lukasiewicz_s_implication(fuzzy_not(lukasiewicz_conorm(fuzzy_not(fuzzy_not(lukasiewicz_conorm(fuzzy_not(newbalanceDest), lukasiewicz_s_implication(newbalanceDest, type_DEBIT)))), godel_conorm(oldbalanceDest, oldbalanceDest))), oldbalanceDest))",18,12,0.16298168035375868,0.9977916666666666,0.16064757160647572,0.16538461538461538
+"fuzzy_not(lukasiewicz_s_implication(fuzzy_not(lukasiewicz_s_implication(type_TRANSFER, lukasiewicz_conorm(newbalanceOrig, oldbalanceDest))), fuzzy_not(lukasiewicz_s_implication(product_conorm(maxDest7, godel_norm(type_TRANSFER, oldbalanceDest)), oldbalanceDest))))",19,12,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308
+type_TRANSFER,1,13,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(newbalanceOrig), type_TRANSFER)",4,13,0.015053763440860216,0.9190866666666667,0.007647907647907648,0.4756410256410256
+"fuzzy_not(lukasiewicz_s_implication(type_TRANSFER, maxDest7))",5,13,0.036790780141843976,0.9855133333333334,0.020135856380397867,0.2128205128205128
+"godel_norm(type_TRANSFER, fuzzy_not(fuzzy_not(fuzzy_not(oldbalanceDest))))",6,13,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"product_norm(fuzzy_not(oldbalanceDest), product_norm(fuzzy_not(oldbalanceDest), type_TRANSFER))",7,13,0.11418481459682167,0.9899666666666667,0.06449468085106383,0.49743589743589745
+"fuzzy_not(lukasiewicz_conorm(oldbalanceDest, fuzzy_not(lukasiewicz_norm(fuzzy_not(newbalanceDest), type_TRANSFER))))",8,13,0.12013729977116705,0.9974366666666666,0.10847107438016529,0.1346153846153846
+"lukasiewicz_norm(lukasiewicz_norm(type_TRANSFER, fuzzy_not(maxDest7)), fuzzy_not(fuzzy_not(fuzzy_not(oldbalanceDest))))",9,13,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"fuzzy_not(godel_s_implication(fuzzy_not(fuzzy_not(lukasiewicz_norm(fuzzy_not(newbalanceOrig), type_TRANSFER))), lukasiewicz_s_implication(fuzzy_not(oldbalanceDest), maxDest3)))",14,13,0.14554794520547945,0.9983366666666667,0.2190721649484536,0.10897435897435898
+"fuzzy_not(lukasiewicz_s_implication(fuzzy_not(newbalanceOrig), lukasiewicz_s_implication(fuzzy_not(oldbalanceDest), lukasiewicz_s_implication(fuzzy_not(fuzzy_not(newbalanceDest)), newbalanceOrig))))",15,13,0.14303959131545338,0.9977633333333333,0.14249363867684478,0.14358974358974358
+"fuzzy_not(fuzzy_not(lukasiewicz_norm(newbalanceDest, fuzzy_not(godel_conorm(fuzzy_not(fuzzy_not(godel_s_implication(fuzzy_not(godel_conorm(newbalanceOrig, fuzzy_not(godel_s_implication(maxDest3, newbalanceDest)))), oldbalanceDest))), type_TRANSFER)))))",20,13,0.15432098765432098,0.9981733333333334,0.1937984496124031,0.1282051282051282
+type_TRANSFER,1,14,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"product_norm(type_TRANSFER, fuzzy_not(newbalanceOrig))",4,14,0.015053763440860216,0.9190866666666667,0.007647907647907648,0.4756410256410256
+"fuzzy_not(product_s_implication(type_TRANSFER, oldbalanceDest))",5,14,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"lukasiewicz_norm(type_TRANSFER, fuzzy_not(product_conorm(oldbalanceDest, is_workday)))",6,14,0.0697986577181208,0.99538,0.04727272727272727,0.13333333333333333
+"fuzzy_not(godel_s_implication(type_TRANSFER, lukasiewicz_conorm(newbalanceOrig, maxDest7)))",7,14,0.09169054441260745,0.99683,0.0730593607305936,0.12307692307692308
+"lukasiewicz_norm(type_TRANSFER, fuzzy_not(lukasiewicz_s_implication(fuzzy_not(newbalanceDest), oldbalanceDest)))",8,14,0.12013729977116705,0.9974366666666666,0.10847107438016529,0.1346153846153846
+"fuzzy_not(lukasiewicz_s_implication(newbalanceDest, lukasiewicz_s_implication(lukasiewicz_norm(newbalanceDest, fuzzy_not(oldbalanceDest)), oldbalanceDest)))",11,14,0.16298168035375868,0.9977916666666666,0.16064757160647572,0.16538461538461538
+type_TRANSFER,1,15,0.015157730247094445,0.9159683333333334,0.007696122185857384,0.49743589743589745
+"product_norm(fuzzy_not(maxDest3), type_TRANSFER)",4,15,0.034940600978336823,0.98619,0.01921598770176787,0.19230769230769232
+"fuzzy_not(godel_s_implication(type_TRANSFER, oldbalanceDest))",5,15,0.049058035149829315,0.97493,0.02580130336480915,0.49743589743589745
+"lukasiewicz_norm(fuzzy_not(newbalanceOrig), godel_norm(fuzzy_not(oldbalanceDest), type_TRANSFER))",7,15,0.11604629340006255,0.99058,0.06608478802992519,0.4756410256410256
+"lukasiewicz_norm(fuzzy_not(product_s_implication(type_TRANSFER, oldbalanceDest)), fuzzy_not(maxDest7))",8,15,0.13530655391120508,0.997955,0.15023474178403756,0.12307692307692308
+"product_norm(fuzzy_not(product_conorm(newbalanceOrig, fuzzy_not(fuzzy_not(oldbalanceDest)))), godel_norm(fuzzy_not(maxDest3), type_TRANSFER))",11,15,0.1542416452442159,0.9972583333333334,0.12875536480686695,0.19230769230769232
+"fuzzy_not(lukasiewicz_conorm(maxDest7, product_conorm(product_norm(oldbalanceDest, lukasiewicz_norm(type_TRANSFER, type_TRANSFER)), lukasiewicz_conorm(fuzzy_not(type_TRANSFER), newbalanceOrig))))",13,15,0.15384615384615385,0.99824,0.20512820512820512,0.12307692307692308

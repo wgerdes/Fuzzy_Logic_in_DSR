@@ -45,4 +45,4 @@ Copy log from server:
 scp -r wgerdes@snellius.surf.nl:deep-symbolic-optimization/dso/log/ /Users/wout/Documents/UvA/Thesis/
 
 Evaluate expression: (alter test set in expression script)
-python main/evaluate_expression.py --equation "lukasiewicz_norm(x4, lukasiewicz_norm(lukasiewicz_conorm(x4, x5), lukasiewicz_norm(lukasiewicz_conorm(lukasiewicz_conorm(x4, fuzzy_not(x10)), x12), fuzzy_not(lukasiewicz_conorm(x12, lukasiewicz_conorm(x3, x16))))))"
+python main/evaluate_expression.py --equation "fuzzy_not(product_conorm(fuzzy_not(x14), product_conorm(product_conorm(product_conorm(product_s_implication(product_s_implication(x3, x4), product_s_implication(product_conorm(x14, x3), x3)), x9), x3), x2)))"

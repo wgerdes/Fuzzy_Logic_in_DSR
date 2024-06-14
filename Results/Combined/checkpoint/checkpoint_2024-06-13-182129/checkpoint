@@ -1,0 +1,3 @@
+model_checkpoint_path: "tf"
+all_model_checkpoint_paths: "../checkpoint_2024-06-12-192126/tf"
+all_model_checkpoint_paths: "tf"

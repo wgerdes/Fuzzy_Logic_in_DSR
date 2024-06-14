@@ -1,4 +1,0 @@
-equation: lukasiewicz_norm(x4, lukasiewicz_norm(lukasiewicz_conorm(x4, x5), lukasiewicz_norm(lukasiewicz_conorm(lukasiewicz_conorm(x4, fuzzy_not(x10)), x12), fuzzy_not(lukasiewicz_conorm(x12, lukasiewicz_conorm(x3, x16))))))
-threshold: 0.55
-dataset: 2m_test
-Evaluated equation: lukasiewicz_norm(newbalanceDest, lukasiewicz_norm(lukasiewicz_conorm(newbalanceDest, externalDest), lukasiewicz_norm(lukasiewicz_conorm(lukasiewicz_conorm(newbalanceDest, fuzzy_not(maxDest3)), type_CASH_IN), fuzzy_not(lukasiewicz_conorm(type_CASH_IN, lukasiewicz_conorm(oldbalanceDest, type_TRANSFER))))))
