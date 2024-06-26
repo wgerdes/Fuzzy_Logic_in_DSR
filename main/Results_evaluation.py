@@ -53,14 +53,14 @@ def main():
     results = []
 
     # Load the test dataset once
-    data_filename = 'data/2m_test.csv'
+    data_filename = 'deep-symbolic-optimization/dso/dso/task/regression/data/2m_test.csv'
     df = pd.read_csv(data_filename, header=None, names=list(var_mapping.values()) + ['y'])
 
     for seed in range(16):
         seed_start = datetime.now()
         print(f"Processing seed {seed} started at: {seed_start}")
 
-        filename = f'Results/Root_node_max/dso_dso_task_regression_data_2m_train_{seed}_pf.csv'
+        filename = f'deep-symbolic-optimization/dso/log/dso_task_regression_data_2m_train_2024_06-10-172357/dso_task_regression_data_2m_train_{seed}_pf.csv'
         df_seed = pd.read_csv(filename)
 
         # Extract the expression and complexity
@@ -105,7 +105,7 @@ def main():
     results_df = pd.DataFrame(results)
     print(results_df)
 
-    results_df.to_csv('root_node_max_summary.csv', index=False)
+    results_df.to_csv('summary.csv', index=False)
 
     end_time = datetime.now()
     print(f"Script ended at: {end_time}, total duration: {end_time - start_time}")

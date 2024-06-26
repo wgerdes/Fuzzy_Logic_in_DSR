@@ -22,11 +22,11 @@
 
       // Metric to be used for the reward function. See regression.py for
       // supported metrics.
-      "metric" : "f4_score",
+      "metric" : "f1_score",
       "metric_params" : [1.0],
 
       // Optional alternate metric to be used at evaluation time.
-      "extra_metric_test" : "f4_score",
+      "extra_metric_test" : "f1_score",
       "extra_metric_test_params" : [1.0],
 
       // NRMSE threshold for early stopping. This is useful for noiseless
