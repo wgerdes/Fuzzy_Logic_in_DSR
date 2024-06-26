@@ -1,6 +1,6 @@
 # Integrating Fuzzy Logic into Deep Symbolic Regression
 
-Integrating Fuzzy Logic into Deep Symbolic Regression developed by Petersen et al. is done by altering the DSO package.
+Integrating Fuzzy Logic into Deep Symbolic Regression developed by Petersen et al. [Paper](https://openreview.net/forum?id=m5Qsh0kBQG) is done by altering the DSO package.
 
 The framework utilizes deep reinforcement learning techniques to produce explainable equations that can be utilized to study fraudulent transactions using fuzzy logic implications.
 
@@ -20,7 +20,7 @@ cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 
 ## Dataset Preprocessing
 
-First, download the PaySim dataset from this Kaggle competition: https://www.kaggle.com/datasets/ealaxi/paysim1
+First, download the PaySim dataset from this Kaggle competition [Kaggle](https://www.kaggle.com/datasets/ealaxi/paysim1)
 Change the filename to paysim.csv and move it to the root directory.
 
 Data preprocessing is done by running Data_preparation.ipynb.
