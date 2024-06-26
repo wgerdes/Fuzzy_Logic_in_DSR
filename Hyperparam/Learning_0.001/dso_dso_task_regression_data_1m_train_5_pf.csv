@@ -1,6 +1,0 @@
-complexity,r,count_on_policy,count_off_policy,expression,traversal,nmse_test,nmse_test_noiseless,success,f1_score,f1_score_noiseless
-1,0.014434615648357674,1194,0,x16,x16,63.258059653373536,63.258059653373536,False,0.014434615648357674,0.014434615648357674
-5,0.014504072297221912,1,0,"fuzzy_not(fuzzy_not(godel_norm(x16, x9)))","fuzzy_not,fuzzy_not,godel_norm,x16,x9",38.87691361407191,38.87691361407191,False,0.014504072297221912,0.014504072297221912
-7,0.10207069650700688,1,0,"fuzzy_not(product_norm(x4, product_conorm(fuzzy_not(x16), x3)))","fuzzy_not,product_norm,x4,product_conorm,fuzzy_not,x16,x3",4.723723257817579,4.723723257817579,False,0.10207069650700688,0.10207069650700688
-10,0.1053484602917342,1,0,"fuzzy_not(lukasiewicz_s_implication(godel_s_implication(x9, x16), product_norm(x9, x3)))","fuzzy_not,lukasiewicz_s_implication,godel_s_implication,x9,x16,product_norm,x9,x3",2.4295320179970217,2.4295320179970217,False,0.1053484602917342,0.1053484602917342
-18,0.12101724641917569,1,0,"fuzzy_not(fuzzy_not(godel_s_implication(godel_r_implication(x5, x5), godel_norm(godel_norm(x8, x13), product_norm(product_s_implication(x13, x9), x1)))))","fuzzy_not,fuzzy_not,godel_s_implication,godel_r_implication,x5,x5,godel_norm,godel_norm,x8,x13,product_norm,product_s_implication,x13,x9,x1",3.308696910379096,3.308696910379096,False,0.12101724641917569,0.12101724641917569

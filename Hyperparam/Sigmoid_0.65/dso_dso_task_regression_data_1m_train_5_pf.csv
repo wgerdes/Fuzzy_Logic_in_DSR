@@ -1,5 +1,0 @@
-complexity,r,count_on_policy,count_off_policy,expression,traversal,nmse_test,nmse_test_noiseless,success,f1_score,f1_score_noiseless
-1,0.014434615648357674,1187,0,x16,x16,63.258059653373536,63.258059653373536,False,0.014434615648357674,0.014434615648357674
-5,0.10462226640159045,1,0,"fuzzy_not(lukasiewicz_s_implication(x16, x3))","fuzzy_not,lukasiewicz_s_implication,x16,x3",7.928989004387019,7.928989004387019,False,0.10462226640159045,0.10462226640159045
-7,0.12539184952978058,1,0,"fuzzy_not(godel_conorm(x3, godel_conorm(x7, fuzzy_not(x4))))","fuzzy_not,godel_conorm,x3,godel_conorm,x7,fuzzy_not,x4",1.2279699873571903,1.2279699873571903,False,0.12539184952978058,0.12539184952978058
-8,0.13134940995382247,1,0,"fuzzy_not(product_conorm(x7, fuzzy_not(lukasiewicz_norm(fuzzy_not(x3), x16))))","fuzzy_not,product_conorm,x7,fuzzy_not,lukasiewicz_norm,fuzzy_not,x3,x16",1.8628612801036948,1.8628612801036948,False,0.13134940995382247,0.13134940995382247
