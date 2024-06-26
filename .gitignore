@@ -2,6 +2,5 @@ data/
 Results_log/
 Results/
 Hyperparam/
-deep-symbolic-optimization/
 .DS_store
 readme.txt
