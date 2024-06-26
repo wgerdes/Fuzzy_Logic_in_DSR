@@ -1,8 +1,8 @@
-# Deep Symbolic Classification for Fraud Detection
+# Integrating Fuzzy Logic into Deep Symbolic Regression
 
-Deep Symbolic Classification (DSC) for Fraud Detection is an adjusted framework of Deep Symbolic Regression developed by Petersen et al. This modified framework is specifically tailored to address classification tasks that involve high class imbalance, such as fraud detection.
+Integrating Fuzzy Logic into Deep Symbolic Regression developed by Petersen et al. is done by altering the DSO package.
 
-The framework utilizes deep reinforcement learning techniques to produce explainable mathematical equations that can be utilized to classify fraudulent transactions in an interpretable manner.
+The framework utilizes deep reinforcement learning techniques to produce explainable equations that can be utilized to study fraudulent transactions using fuzzy logic implications.
 
 ## Installation
 
@@ -20,7 +20,8 @@ cp main/config_logic.json deep-symbolic-optimization/dso/dso/config/
 
 ## Dataset Preprocessing
 
-First, download the PaySim dataset from this Kaggle competition. Change the filename to paysim.csv and move it to the root directory.
+First, download the PaySim dataset from this Kaggle competition: https://www.kaggle.com/datasets/ealaxi/paysim1
+Change the filename to paysim.csv and move it to the root directory.
 
 Data preprocessing is done by running Data_preparation.ipynb.
 
